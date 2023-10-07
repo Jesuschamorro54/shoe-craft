@@ -4,15 +4,15 @@ from flask_marshmallow import Marshmallow
 
 app = Flask(__name__)
 
-#creamos las credenciales para conectarnos a la bd
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:20023006@localhost/prestamoul'
+# Creamos las credenciales para conectarnos a la bd
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:20023006@localhost/shoe_craft'
 app.config['SQLALCHEMY_TRACK_MODIFACATIONS'] = False
 
-app.secret_key = "WebAvanzada"
+app.secret_key = "WebAvanzada_a6U7MEQ6rzasJz4A"
 
-#creamos los objetos de bd
+# Creamos los objetos de bd
 
-db = None # SQLAlchemy(app)
-ma = None # Marshmallow(app)
+db = SQLAlchemy(app)
+ma = Marshmallow(app)
 
 

@@ -1,1 +1,1 @@
-from .auth.api_main import auth_paths
+from .auth.api_auth import auth_paths
