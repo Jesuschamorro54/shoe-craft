@@ -27,7 +27,7 @@ def jwt_token_generate(payload: dict):
             "dni": payload['dni'],
             "role": payload['role'],
             "password": payload.pop('password'),
-            "exp": due_date_generate(seconds=30),
+            "exp": due_date_generate(days=1, seconds=30),
         })
         
         token = jwt.encode(user, SECRET_KEY, algorithm="HS256")
@@ -40,7 +40,7 @@ def jwt_token_generate(payload: dict):
             "message": "Successfully generated token",   
         }
 
-        # logger.info(token)
+        # logger.info(userSession)
 
         return userSession
 

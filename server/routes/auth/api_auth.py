@@ -2,9 +2,8 @@ import json
 
 from flask import Blueprint, request, jsonify
 from common.CustomLoggin import Logger
-from common.jwt_utils import jwt_token_generate, verify_token
 from controllers import *
-from routes.routes import generate_event
+from routes.routes import generate_event, loggin_required, generate_token
 
 # Parent api/auth
 
@@ -12,20 +11,9 @@ logger = Logger()
 
 auth_paths = Blueprint("auth_paths", __name__)
 
-def generate_token():
-    
-    data = {
-        "id": 1234,
-        "dni": 1002159985,
-        "role": 'admin',
-        "password": 'jesus123',
-    }
-
-    api_session = jwt_token_generate(data)
-
-    return jsonify(api_session)
 
 @auth_paths.route('/users', methods=['POST'])
+@loggin_required
 def api_user_register():    
     try:
 
@@ -44,8 +32,11 @@ def api_user_register():
     return response
 
 
-@auth_paths.route('/users', methods=['GET'])
+@auth_paths.route('/token', methods=['GET'])
 def api_test():
+    
+    token =  generate_token()
 
+    print(token)
 
-    return {"status": True}
+    return {"status": True, 'token': token['idToken']}
