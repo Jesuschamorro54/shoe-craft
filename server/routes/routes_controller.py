@@ -3,7 +3,7 @@ from flask import Request, jsonify, request
 from common.jwt_utils import jwt_token_generate, verify_token
 
 
-def generate_event(request: Request) -> dict:
+def generate_event(request: Request, claims={}) -> dict:
     event = {
         'body': request.json if request.method == 'POST' else None,
         'queryStringParameters': dict(request.args),
@@ -13,6 +13,10 @@ def generate_event(request: Request) -> dict:
             'ip_client': request.remote_addr,
             'cookies': dict(request.cookies),
             'method': request.method
+        },
+
+        'authorizer': {
+            'jwt': claims
         }
     }
 
@@ -24,7 +28,7 @@ def generate_token():
     data = {
         "id": 1234,
         "dni": 1002159985,
-        "role": 'admin',
+        "role": 'cutter',
         "password": 'jesus123',
     }
 
@@ -33,11 +37,22 @@ def generate_token():
     return api_session
 
 
-
 def loggin_required(function):
-    
+    """
+    Decorator to check if a user is logged in.
+
+    Args:
+        function (callable): The function to be wrapped.
+
+    Returns:
+        callable: The wrapped function.
+
+    Raises:
+        KeyError: If the 'Authorization' header is not found in the request.
+        Exception: If there is an error while verifying the token.
+    """
     @functools.wraps(function)
-    def wraped_access(*args, **kwargs):
+    def wraped_access(**kwargs):
 
         try:
 
@@ -53,7 +68,9 @@ def loggin_required(function):
         except:
             return {"message": 'Unauthorized'}, 401
         
+        # Update the user login info
+        kwargs.update({'claims': valid['data']})
 
-        return function(*args)
+        return function(**kwargs)
      
     return wraped_access

@@ -1,5 +1,6 @@
 import uuid
 import inspect
+from datetime import datetime
 
 BL = '\033[30m'  # Black
 R = '\033[31m'  # Red
@@ -29,8 +30,9 @@ class Logger():
         file_line = frame_info[2]
         
         id = str(uuid.uuid4())
+        date = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
 
-        print(f"{B}[INFO] {file_name}:{file_line}{W} {id}:{RS} {message}\n")
+        print(f"{B}[INFO] {date} | {file_name}:{file_line} |{W} {id}:{RS} {message}\n")
 
     def error(self, error, errorMessage=""):
         
@@ -43,8 +45,9 @@ class Logger():
         file_line = frame_info[2]
 
         id = str(uuid.uuid4())
+        date = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
 
-        print(f"\n{R}[ERROR] {file_name}:{file_line} {calling_file}{W} {id}:{RS}\n{errorMessage}\n{error}\n")
+        print(f"\n{R}[ERROR] {date} | {file_name}:{file_line} {calling_file} |{W} {id}:{RS}\n{errorMessage}\n{error}\n")
 
     def critical(self, message):
         
@@ -57,5 +60,6 @@ class Logger():
         file_line = frame_info[2]
 
         id = str(uuid.uuid4())
+        date = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
 
-        print(f"{R}[WARNING] {calling_file}{W} {id}:{RS} \n{message}\n")
+        print(f"{R}[WARNING] {date} | {calling_file} |{W} {id}:{RS} \n{message}\n")

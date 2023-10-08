@@ -26,9 +26,12 @@ def jwt_token_generate(payload: dict):
             "id": payload['id'],
             "dni": payload['dni'],
             "role": payload['role'],
-            "password": payload.pop('password'),
             "exp": due_date_generate(days=1, seconds=30),
         })
+
+        user['creation'] = user["creation"].strftime('%Y-%m-%d %H:%M:%S')
+
+        logger.info(user)
         
         token = jwt.encode(user, SECRET_KEY, algorithm="HS256")
 
@@ -69,7 +72,8 @@ def verify_token(token) -> dict:
 
             response = {
                 "status": True,
-                "message": "Token verification successful"
+                "message": "Token verification successful",
+                "data": is_valid
             }
 
             return response 
