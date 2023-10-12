@@ -5,12 +5,12 @@ from common.utils import search
 from config.configure import db
 from common.exceptions import *
 from common.CustomLoggin import Logger
-from models.packages import Packages, PackagesSchema
+from models.products import Products, ProductsSchema
 from models.products import Products
 
 
-package_schema = PackagesSchema()
-packages_schemas = PackagesSchema(many=True)
+product_schema = ProductsSchema()
+products_schemas = ProductsSchema(many=True)
 logger = Logger()
 
 execution_message = '''
@@ -37,18 +37,22 @@ def main(event):
 
         user = event['authorizer']['jwt']        
 
-        if user['role'] != 'admin':
-            params.update({'employee_id': user['id']})
+        authorized = user['role'] == 'admin'
+        if not authorized:
+            raise PermissionError()
 
         logger.info(execution_message.format(set(params)))
 
+    except PermissionError as e:
+        return UnauthorizedCreationException()
+    
     except Exception as e:
         logger.error(e)
         return InsufficientParametersException()
 
     result = { 'status': False,  'data': [] }
     
-    result['data'] = search(Packages, params, fields)
+    result['data'] = search(Products, params, fields)
     # logger.info(result)
 
 
@@ -58,7 +62,7 @@ def main(event):
             'status': False,
             'data': [],
             'error': 'ResourceNotFoundException',
-            'errorMessage': 'The packages does not exists.'
+            'errorMessage': 'The Products does not exists.'
         })
 
     return {

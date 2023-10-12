@@ -1,12 +1,12 @@
 import json
 import pymysql
-from common.utils import search
+from common.utils import build_filters, list_to_listdict, search, delete
 
 from config.configure import db
 from common.exceptions import *
 from common.CustomLoggin import Logger
 from models.packages import Packages, PackagesSchema
-from models.products import Products
+from werkzeug.security import check_password_hash
 
 
 package_schema = PackagesSchema()
@@ -18,10 +18,10 @@ execution_message = '''
     Parameters: {0}
 '''
 
-fields = None
-
 def main(event):
     try:
+
+        logger.info(event)
         params = {}
 
         # check optional pathParameters
@@ -35,10 +35,9 @@ def main(event):
             params.update({ k:json.loads(v) for k, v in query.items() })
 
 
-        user = event['authorizer']['jwt']        
+        user = event['authorizer']['jwt']
 
-        if user['role'] != 'admin':
-            params.update({'employee_id': user['id']})
+        params['id']
 
         logger.info(execution_message.format(set(params)))
 
@@ -48,8 +47,11 @@ def main(event):
 
     result = { 'status': False,  'data': [] }
     
-    result['data'] = search(Packages, params, fields)
-    # logger.info(result)
+    try:
+        result['data'] = delete(Packages, params)
+    except Exception as e:
+        print(e)
+        return PyMysqlIntegrityError(e)
 
 
     if not result['data']:
@@ -58,7 +60,7 @@ def main(event):
             'status': False,
             'data': [],
             'error': 'ResourceNotFoundException',
-            'errorMessage': 'The packages does not exists.'
+            'errorMessage': 'The user does not exists.'
         })
 
     return {

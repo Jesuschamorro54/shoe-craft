@@ -34,15 +34,22 @@ def PyMysqlIntegrityError(error):
     
     match = str(error.args[0]).replace('(', '').split(') ')
 
-    error_code, error_message = match[1].replace(')', '').split(',')
+    error_message = match[1].replace(')', '').split(',')[1]
 
-    return {
+    print(error_message)
+
+    error_data = {
         'statusCode': 200,
         'body': json.dumps({ 
             'status': False, 
             'result': 'PyMysqlIntegrityError',
-            'errorMessage': json.loads(error_message), 
-        })
+            'errorMessage': error_message, 
+        }, default=str)
     }
+
+    
+
+
+    return error_data
 
 

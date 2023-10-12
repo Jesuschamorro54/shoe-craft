@@ -9,12 +9,12 @@ from routes.routes_controller import generate_event, loggin_required, generate_t
 
 logger = Logger()
 
-packages_paths = Blueprint("packages_paths", __name__)
+products_paths = Blueprint("products_paths", __name__)
 
 
-@packages_paths.route('/packages', methods=['POST', 'GET'])
+@products_paths.route('/products', methods=['POST', 'GET'])
 @loggin_required
-def api_get_packages(claims=None):
+def api_get_products(claims=None):
     try:
 
         response = ({"message": "Communication error"}, 500)
@@ -23,11 +23,11 @@ def api_get_packages(claims=None):
 
         if event['request']['method'] == 'POST':
 
-            execution = post_packages.main(event)
+            execution = post_products.main(event)
             response = (execution['body'], execution['statusCode'])
         
         if event['request']['method'] == 'GET':
-            execution = get_packages.main(event)
+            execution = get_products.main(event)
             response = (execution['body'], execution['statusCode'])
 
     except Exception as e:
@@ -37,9 +37,9 @@ def api_get_packages(claims=None):
     return response
 
 
-@packages_paths.route('/packages/<id>', methods=['DELETE'])
-@loggin_required
-def api_delete_packages(id, claims=None):
+@products_paths.route('/products/<id>', methods=['DELETE'])
+@admin_required
+def api_delete_products(id, claims=None):
     try:
 
         response = ({"message": "Communication error"}, 500)
@@ -48,7 +48,7 @@ def api_delete_packages(id, claims=None):
 
         if event['request']['method'] == 'DELETE':
 
-            execution = delete_packages.main(event)
+            execution = delete_products.main(event)
             response = (execution['body'], execution['statusCode'])
         
     except Exception as e:
