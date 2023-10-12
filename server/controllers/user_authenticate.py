@@ -4,7 +4,7 @@ import pymysql
 from config.configure import db
 from common.exceptions import *
 from common.CustomLoggin import Logger
-from common.jwt_utils import SECRET_KEY, jwt_token_generate
+from common.utils import SECRET_KEY, jwt_token_generate
 from models.employees import Employees, EmployeesSchema
 from werkzeug.security import check_password_hash
 

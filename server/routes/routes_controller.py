@@ -1,8 +1,9 @@
 import functools
 from flask import Request, jsonify, request
-from common.jwt_utils import jwt_token_generate, verify_token
+from common.CustomLoggin import Logger
+from common.utils import jwt_token_generate, verify_token
 
-
+logger = Logger()
 def generate_event(request: Request, claims={}) -> dict:
     event = {
         'body': request.json if request.method == 'POST' else None,
@@ -73,4 +74,43 @@ def loggin_required(function):
 
         return function(**kwargs)
      
+    return wraped_access
+
+def admin_required(function):
+    """
+    Decorator to check if a user is logged in and him role is admin.
+
+    Args:
+        function (callable): The function to be wrapped.
+
+    Returns:
+        callable: The wrapped function.
+
+    Raises:
+        KeyError: If the 'Authorization' header is not found in the request.
+        Exception: If there is an error while verifying the token.
+    """
+    @functools.wraps(function)
+    def wraped_access(**kwargs):
+
+        try:
+
+            token = request.headers['Authorization']
+            token = token.replace("Bearer","").replace(" ","")
+
+            # Call the function to validate token
+            valid = verify_token(token, True)
+
+            logger.info(valid)
+
+            if not valid['status'] or valid['data']['role'] != 'admin':
+                return {"message": 'Unauthorized'}, 401
+            
+        except:
+            return {"message": 'Unauthorized'}, 401
+        
+        # Update the user login info
+        kwargs.update({'claims': valid['data']})
+
+        return function(**kwargs)
     return wraped_access

@@ -5,25 +5,25 @@ from flask import Blueprint, request, jsonify
 from common.CustomLoggin import Logger
 from routes.routes_controller import generate_event, loggin_required, generate_token, admin_required
 
-# Parent api/auth
+# Parent /api
 
 logger = Logger()
 
-auth_paths = Blueprint("auth_paths", __name__)
+employees_paths = Blueprint("employees_paths", __name__)
 
 
-@auth_paths.route('/employee', methods=['POST'])
+@employees_paths.route('/employees', methods=['GET'])
 @admin_required
-def api_user_register(claims=None):    
+def api_get_employees(claims=None):
     try:
 
         response = ({"message": "Communication error"}, 500)
 
         event = generate_event(request, claims)
 
-        if event['request']['method'] == 'POST':
+        if event['request']['method'] == 'GET':
 
-            execution = post_employees.main(event)
+            execution = get_employees.main(event)
             response = (execution['body'], execution['statusCode'])
         
     except Exception as e:
@@ -33,17 +33,18 @@ def api_user_register(claims=None):
     return response
 
 
-@auth_paths.route('/login', methods=['POST'])
-def api_user_login(claims=None):    
+@employees_paths.route('/employees/<id>', methods=['DELETE'])
+@admin_required
+def api_delete_employees(id, claims=None):
     try:
 
         response = ({"message": "Communication error"}, 500)
 
         event = generate_event(request, claims)
 
-        if event['request']['method'] == 'POST':
+        if event['request']['method'] == 'DELETE':
 
-            execution = user_authenticate.main(event)
+            execution = detele_employees.main(event)
             response = (execution['body'], execution['statusCode'])
         
     except Exception as e:
@@ -51,10 +52,3 @@ def api_user_login(claims=None):
         response = ({ "message": "Internal server error" }, 500) 
 
     return response
-
-
-@auth_paths.route('/token', methods=['GET'])
-def api_test():
-    
-    token =  generate_token()
-    return {"status": True, 'token': token['idToken']}

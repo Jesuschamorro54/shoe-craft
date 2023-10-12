@@ -1,6 +1,8 @@
 import jwt
 import inspect
+from config.configure import db
 from datetime import datetime, timedelta, timezone
+from sqlalchemy import and_, or_
 
 SECRET_KEY = "a6U7MEQ6rzasJz4A"
 
@@ -51,7 +53,7 @@ def jwt_token_generate(payload: dict):
         return map_error(e, "Error generating token", "GenerateTokenException", 500)
 
 
-def verify_token(token) -> dict:
+def verify_token(token, signature=False) -> dict:
     """
     Verifies the authenticity of a JWT token.
 
@@ -73,7 +75,7 @@ def verify_token(token) -> dict:
             response = {
                 "status": True,
                 "message": "Token verification successful",
-                "data": is_valid
+                "data": is_valid,
             }
 
             return response 
@@ -141,3 +143,58 @@ def map_error(error, message, error_message, error_code=None) -> dict:
 
 
     return response
+
+
+def list_to_listdict(fields, data: list):
+    
+    field_names = [str(field).split('.')[1] for field in fields ]
+    data_return = []
+
+    for item in data:
+        new_item = {}
+        for i, value in enumerate(item):
+            new_item.update({field_names[i]: value})
+            print(f"{field_names[i]}: {value}")
+
+        data_return.append(new_item)
+
+    return data_return
+
+
+def build_filters(Table, params):
+    filters = []
+
+    table_name = Table.__name__
+
+    for key, value in params.items():
+        
+        attribute = getattr(Table, key, None)
+
+        if attribute is not None:
+            filters.append(attribute == value)
+
+    if table_name == 'Employees':
+        filters.append(Table.role != 'admin')
+
+    return filters
+
+
+def search(Table, params, fields):
+    filters = build_filters(Table, params)
+    result = list_to_listdict(fields, db.session.query(*fields).filter(*filters).all())
+
+    return result
+
+
+def delete(Table, params):
+    result = {'row_affect': 0}
+    filters = build_filters(Table, params)
+    item = db.session.query(Table).filter(*filters).first()
+
+    if item:
+        db.session.delete(item)
+        db.session.commit()
+
+        result = {'row_affect': 1}
+
+    return result

@@ -15,6 +15,7 @@ def api_register_blueprint():
     try:
         # From auth
         app.register_blueprint(routes.auth_paths, url_prefix = "/api/auth" )
+        app.register_blueprint(routes.employees_paths, url_prefix = "/api" )
 
     except Exception as e:
         logger.error(e, "ErrorRouteRecording")

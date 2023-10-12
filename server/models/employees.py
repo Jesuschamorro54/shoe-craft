@@ -4,7 +4,7 @@ from marshmallow import fields, validate
 
 
 class Employees(db.Model):
-    __tablename__ = 'employee'
+    __tablename__ = 'employees'
 
     id = db.Column(db.Integer, primary_key = True)
     dni = db.Column(db.String(50), unique=True)
@@ -30,7 +30,7 @@ with app.app_context():
 
 class EmployeesSchema(ma.Schema):
 
-    id = fields.Int(dump_only=True)
+    id = fields.Int(dump_only=True) 
     dni = fields.Str(required=True, validate=validate.Length(min=1, max=15))
     name = fields.Str(required=True, validate=validate.Length(min=1, max=50))
     email = fields.Email(required=True)
