@@ -1,6 +1,7 @@
 import json
 from math import ceil
 import pymysql
+import datetime
 
 from config.configure import db
 from common.exceptions import *
@@ -103,10 +104,15 @@ def distribute_total_products(data, product):
 
         # Inserto el registro con 12
         complete = data.copy()
-        complete['total_products'] = 12
-        complete['name'] += ref()
-        complete['state'] = 1
-        complete['total_cost'] = complete['total_products'] * product[0]['cost']
+
+        complete.update({
+            'total_products': 12,
+            'name': ref(),
+            'state': 1,
+            'total_cost': complete['total_products'] * product[0]['cost'],
+            'date': datetime.datetime.utcnow()
+        })
+
         data_post = Packages(**complete)
         db.session.add(data_post)
         db.session.commit()

@@ -12,31 +12,27 @@ logger = Logger()
 packages_paths = Blueprint("packages_paths", __name__)
 
 
-@packages_paths.route('/packages', methods=['POST'])
+@packages_paths.route('/packages', methods=['POST', 'GET'])
 @admin_required
 def api_get_employees(claims=None):
-    response = ({"message": "Communication error"}, 500)
+    try:
 
-    event = generate_event(request, claims)
+        response = ({"message": "Communication error"}, 500)
 
-    if event['request']['method'] == 'POST':
+        event = generate_event(request, claims)
 
-        execution = post_packages.main(event)
-        response = (execution['body'], execution['statusCode'])
-    # try:
+        if event['request']['method'] == 'POST':
 
-    #     response = ({"message": "Communication error"}, 500)
-
-    #     event = generate_event(request, claims)
-
-    #     if event['request']['method'] == 'POST':
-
-    #         execution = post_packages.main(event)
-    #         response = (execution['body'], execution['statusCode'])
+            execution = post_packages.main(event)
+            response = (execution['body'], execution['statusCode'])
         
-    # except Exception as e:
-    #     logger.error(e)
-    #     response = ({ "message": "Internal server error" }, 500) 
+        if event['request']['method'] == 'GET':
+            execution = get_packages.main(event)
+            response = (execution['body'], execution['statusCode'])
+
+    except Exception as e:
+        logger.error(e)
+        response = ({ "message": "Internal server error" }, 500) 
 
     return response
 

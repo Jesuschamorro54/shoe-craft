@@ -163,6 +163,9 @@ def list_to_listdict(fields, data: list):
 
 def build_filters(Table, params):
     filters = []
+    dates_range = params.pop('dates', None)
+    init = params.pop('init', None)
+    end = params.pop('end', None)
 
     table_name = Table.__name__
 
@@ -172,6 +175,20 @@ def build_filters(Table, params):
 
         if attribute is not None:
             filters.append(attribute == value)
+
+    if dates_range:
+        date_column = getattr(Table, 'date', None)  # Reemplaza 'date' con el nombre de tu columna de fecha
+        if date_column is not None:
+            date_range_condition = False
+            if init and end:
+                date_range_condition = and_(date_column >= init, date_column <= end)
+            elif init:
+                date_range_condition = date_column >= init
+            elif end:
+                date_range_condition = date_column <= end
+
+            if date_range_condition is not None:
+                filters.append(date_range_condition)
 
     if table_name == 'Employees':
         filters.append(Table.role != 'admin')
