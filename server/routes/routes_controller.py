@@ -101,7 +101,7 @@ def admin_required(function):
             # Call the function to validate token
             valid = verify_token(token, True)
 
-            logger.info(valid)
+            # logger.info(valid)
 
             if not valid['status'] or valid['data']['role'] != 'admin':
                 return {"message": 'Unauthorized'}, 401

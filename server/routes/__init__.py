@@ -1,2 +1,3 @@
-from .auth.api_auth import auth_paths
-from .employees.api_employees import employees_paths
+from .api_auth import auth_paths
+from .api_employees import employees_paths
+from .api_packages import packages_paths

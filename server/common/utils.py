@@ -179,10 +179,15 @@ def build_filters(Table, params):
     return filters
 
 
-def search(Table, params, fields):
+def search(Table, params, fields=None):
     filters = build_filters(Table, params)
-    result = list_to_listdict(fields, db.session.query(*fields).filter(*filters).all())
+    if fields:
+        result = list_to_listdict(fields, db.session.query(*fields).filter(*filters).all())
+    else: 
+        fields = [attr for attr in dir(Table) if not attr.startswith("_")]
+        items = db.session.query(Table).filter(*filters).all()
 
+        result = [item.to_dict() for item in items]
     return result
 
 
@@ -198,3 +203,10 @@ def delete(Table, params):
         result = {'row_affect': 1}
 
     return result
+
+def get_object(Table, params):
+    result = {'row_affect': 0}
+    filters = build_filters(Table, params)
+    item = db.session.query(Table).filter(*filters).first()
+
+    return item
