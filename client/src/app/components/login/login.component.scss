@@ -47,7 +47,6 @@
   }
 
   .login-form{
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -79,9 +78,16 @@
       cursor: pointer;
     }
 
-    a{
-      font-size: 13px;
+    .forget-password{
+      font-size: 12px;
       text-align: left;
+      cursor: pointer;
+      &:hover{
+        text-decoration: underline;
+        font-weight: 600;
+      }
+
+
     }
 
     .login-button{
