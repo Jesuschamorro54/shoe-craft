@@ -1,19 +1,25 @@
 @import './../../../assets/style/colors.scss';
 
-footer{
+.main-footer{
+  margin-top: 2rem;
+  text-align: center;
+  background-color: $color-primate-red;
+  padding: 1rem 0;
+  height: 170px;
+  letter-spacing: 1px;
   position: fixed;
   bottom: 0;
   width: 100%;
+  font-size: 13px;
   text-align: center;
-
   color:#fff;
 
-  .main-footer{
-    text-align: center;
-    background-color: $color-primate-red;
-    padding: 1rem 0;
-    height: 170px;
-    letter-spacing: 1px;
-
+  p{
+    margin: 5px  0;
   }
+
+  img{
+    width: 200px;
+  }
+
 }
