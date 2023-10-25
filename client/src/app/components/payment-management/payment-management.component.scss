@@ -1,0 +1,61 @@
+@import './../../../assets/style/colors.scss';
+
+main{
+  .title-descrition{
+    border:1px solid $color-primate-red;
+    border-radius: 6px;
+    padding: 1rem;
+
+    h3{
+      color:$color-primate-red;
+      margin: 0.5rem 0;
+    }
+
+    .description{
+      color:$color-gray-strong;
+      font-size: 13px;
+    }
+  }
+
+
+  .menu{
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+
+    .option{
+      margin-right: 2rem;
+
+      .btn{
+        padding: 20px 10px;
+        background-color: transparent;
+        border: 0px;
+        font-weight: 600;
+      }
+
+    }
+
+
+
+    form{
+      border: 1px solid $color-gray;
+      border-radius: 4px;
+
+
+      input{
+        border:0px;
+        outline: none;
+        padding: 10px;
+
+      };
+
+      .btn-search{
+        border:0px;
+        padding: 10px;
+        background-color: $color-primate-red;
+        color:#fff;
+      }
+
+    }
+  }
+}
