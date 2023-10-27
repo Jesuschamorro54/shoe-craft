@@ -1,26 +1,45 @@
-<ul>
-  <div class="header">
-    <p>Nombre</p>
-    <p>Identificado</p>
-    <p>Nombre</p>
-    <p>Nombre</p>
-  </div>
 
-  <li class="container-list">
-    <div class="infor-user">
+<table class="tb-payments" cellspacing="0">
+
+  <tr class="table-header">
+    <th>Nombre</th>
+    <th>Identificación</th>
+    <th>Fecha</th>
+    <th>Valor $</th>
+    <th>Fecha de pago</th>
+    <th>Medio</th>
+    <th>Estado</th>
+    <th>Acciones</th>
+    <th>Nota</th>
+  </tr>
+
+  <tr class="" class="payment-information" *ngFor="payment of paymentList">
+    <td class="infor-user">
       <div class="profile">
         <img src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png" alt="">
       </div>
 
-      <div>
+      <div class="name">
         <p>Sara Acuña</p>
         <p>(Cortador)</p>
       </div>
-    </div>
+    </td>
 
-    <div>
-      <p>122345</p>
-    </div>
+    <td>1052964434</td>
+    <td>21/06/2023</td>
+    <td>5000000</td>
+    <td>21/07/2023</td>
+    <td>Bancolombia</td>
+    <td>Exitoso</td>
 
-  </li>
-</ul>
+    <td class="action">
+      <span><i class="fa-solid fa-pen"></i></span>
+      <span><i class="fa-solid fa-trash"></i></span>
+    </td>
+
+    <td>
+      EL pago se realizo con firma etxc
+    </td>
+  </tr>
+
+</table>

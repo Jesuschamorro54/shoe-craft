@@ -24,6 +24,7 @@
       color:$color-primate-red;
       font-weight: 400;
       letter-spacing: 1px;
+      font-size: 20px;
     }
   }
 
@@ -80,7 +81,7 @@
     }
 
     .forget-password{
-      font-size: 12px;
+      font-size: 13px;
       text-align: left;
       cursor: pointer;
       &:hover{
@@ -113,7 +114,7 @@
 
     .warning{
       margin-top: 1rem;
-      font-size: 12px;
+      font-size: 13px;
       color:$color-gray;
       &:hover{
         color:$color-gray-strong;

@@ -1,40 +1,53 @@
 @import './../../../assets/style/colors.scss';
 
-.header{
-  background-color: $color-primate-red;
-  display: flex;
-  padding: 0.5rem 1rem;
+.tb-payments{
+  text-align: center;
 
-
-  p{
-    margin-right: 1rem;
-    color:#fff;
-    font-weight: 600;
-    letter-spacing: 1px;
+  .table-header{
+    th{
+      background-color: $color-primate-red;
+      color:#fff;
+      padding: 1rem;
+      font-size: 17px;
+    }
   }
 
-}
+  .payment-information{
+    border:1px solid gray;
+    td{
+      padding: 0.5rem 0;
+      border-radius: 4px;
 
-.container-list{
-  padding: 0.5rem 0;
+    }
 
-  .infor-user{
-    display:flex;;
-    align-items: center;
 
-    .profile{
+    .infor-user{
+      display:flex;;
+      align-items: center;
+
+      .profile{
+        display: flex;
+      }
+
+      img{
+        border-radius: 50%;
+        max-width: 50px;
+        min-width: 40px;
+        margin-right: 10px;
+      }
+
+      p{
+        margin: 0;
+      }
+    }
+
+    .action{
       display: flex;
-    }
+      flex-direction: column;
 
-    img{
-      border-radius: 50%;
-      max-width: 60px;
-      min-width: 40px;
-      margin-right: 10px;
-    }
-
-    p{
-      margin: 0;
+      span{
+        margin: 5px 0;
+      }
     }
   }
 
