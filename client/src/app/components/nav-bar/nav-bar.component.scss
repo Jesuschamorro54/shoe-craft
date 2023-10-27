@@ -4,6 +4,10 @@ nav{
   border-bottom: 1px solid $color-primate-red;
   // box-shadow: 0px 4px 4px $color-gray; /* Bottom shadow effect */
 
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+
   .main-nav{
     display: flex;
     align-items: center;
