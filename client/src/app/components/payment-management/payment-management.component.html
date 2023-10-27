@@ -6,17 +6,18 @@
 
   <div class="menu">
     <div class="option">
-      <button class="btn">Resgitros</button>
-      <button class="btn">Pagos pendientes</button>
-      <button class="btn">Pagos fallidos</button>
+      <button class="btn" (click)="btbMenu('records')" [ngClass]="{'btn-select': menuIdentifier == 'records' }">Resgitros</button>
+      <button class="btn" (click)="btbMenu('pending-payments')" [ngClass]="{ 'btn-select': menuIdentifier == 'pending-payments' }">Pagos pendientes</button>
+      <button class="btn" (click)="btbMenu('failed-payments')" [ngClass]="{ 'btn-select': menuIdentifier == 'failed-payments' }">Pagos fallidos</button>
     </div>
 
     <form>
       <input type="text" name="search" placeholder="Buscar empleado...">
       <button type="submit" class="btn-search">
-        <i class="fa-solid fa-magnifying-glass">
-
-        </i></button>
-  </form>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </form>
   </div>
 </main>
+
+<app-product-registration></app-product-registration>
