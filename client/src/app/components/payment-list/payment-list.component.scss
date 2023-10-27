@@ -1,0 +1,42 @@
+@import './../../../assets/style/colors.scss';
+
+.header{
+  background-color: $color-primate-red;
+  display: flex;
+  padding: 0.5rem 1rem;
+
+
+  p{
+    margin-right: 1rem;
+    color:#fff;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+}
+
+.container-list{
+  padding: 0.5rem 0;
+
+  .infor-user{
+    display:flex;;
+    align-items: center;
+
+    .profile{
+      display: flex;
+    }
+
+    img{
+      border-radius: 50%;
+      max-width: 60px;
+      min-width: 40px;
+      margin-right: 10px;
+    }
+
+    p{
+      margin: 0;
+    }
+  }
+
+}
+
