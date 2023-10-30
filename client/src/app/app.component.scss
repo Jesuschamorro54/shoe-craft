@@ -1,4 +1,11 @@
 @import url('./../assets/style/colors.scss');
+:host{
+  position: relative;
+}
 .toolbar, .content{
   border-left: 10px solid red;
+}
+.main-container{
+  margin: 0 5rem;
+  min-height: calc(100vh - 258px);
 }

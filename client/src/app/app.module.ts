@@ -9,6 +9,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PaymentManagementComponent } from './components/payment-management/payment-management.component';
 import { ProductRegistrationComponent } from './components/product-registration/product-registration.component';
 import { PaymentListComponent } from './components/payment-list/payment-list.component';
+import { ManageUserComponent } from './components/manage-user/manage-user.component';
+import { CreateUserModalComponent } from './components/modals/create-user-modal/create-user-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { PaymentListComponent } from './components/payment-list/payment-list.com
     FooterComponent,
     PaymentManagementComponent,
     ProductRegistrationComponent,
-    PaymentListComponent
+    PaymentListComponent,
+    ManageUserComponent,
+    CreateUserModalComponent
   ],
   imports: [
     BrowserModule,
