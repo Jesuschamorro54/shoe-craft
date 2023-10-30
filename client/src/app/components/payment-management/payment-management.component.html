@@ -8,7 +8,7 @@
     <div class="option">
       <button class="btn" (click)="btbMenu('records')" [ngClass]="{'btn-select': menuIdentifier == 'records' }">Resgitros</button>
       <button class="btn" (click)="btbMenu('pending-payments')" [ngClass]="{ 'btn-select': menuIdentifier == 'pending-payments' }">Pagos pendientes</button>
-      <button class="btn" (click)="btbMenu('failed-payments')" [ngClass]="{ 'btn-select': menuIdentifier == 'failed-payments' }">Pagos fallidos</button>
+      <button class="btn" (click)="btbMenu('exit-payments')" [ngClass]="{ 'btn-select': menuIdentifier == 'exit-payments' }">Pagos Exitosos</button>
     </div>
 
     <form>
@@ -18,6 +18,11 @@
       </button>
     </form>
   </div>
+
+  <router-outlet></router-outlet>
+
 </main>
 
-<app-payment-list></app-payment-list>
+
+
+<!-- <app-payment-list></app-payment-list> -->

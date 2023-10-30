@@ -9,37 +9,39 @@
     <th>Fecha de pago</th>
     <th>Medio</th>
     <th>Estado</th>
-    <th>Acciones</th>
+    <th *ngIf="filterType === 'Pendiente'" >Acciones</th>
     <th>Nota</th>
   </tr>
 
-  <tr class="payment-information" *ngFor="payment of paymentList">
+  <tr class="payment-information" *ngFor="let payment of payments">
 
     <td class="infor-user">
       <div>
         <img src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png" alt="">
 
         <div class="name">
-          <p>Sara Acuña</p>
-          <p>(Cortador)</p>
+          <p>{{payment.name}}</p>
+          <p>({{payment.role}})</p>
         </div>
       </div>
     </td>
 
-    <td>1052964434</td>
-    <td>21/06/2023</td>
-    <td>5000000</td>
-    <td>21/07/2023</td>
-    <td>Bancolombia</td>
-    <td>Exitoso</td>
+    <td>{{payment.documentNumber}}</td>
+    <td>{{payment.createdAt}}</td>
+    <td>{{payment.value}}</td>
+    <td>{{payment.paymentAt}}</td>
+    <td>{{payment.paymentMethod}}</td>
+    <td>{{payment.status}}</td>
 
-    <td class="action">
-      <span><i class="fa-solid fa-pen"></i></span>
-      <span><i class="fa-solid fa-trash"></i></span>
+    <td *ngIf="filterType === 'Pendiente'" class="action">
+      <span *ngIf="!editing" (click)="edit(payment.id)" ><i class="fa-solid fa-pen"></i></span>
+      <span *ngIf="!editing"><i class="fa-solid fa-trash"></i></span>
+      <span *ngIf="editing && payment.id === editing"><i class="fa-solid fa-floppy-disk"></i></span>
+      <span *ngIf="editing && payment.id === editing" (click)="cancelEdit()"><i class="fa-solid fa-xmark"></i></span>
     </td>
 
     <td class="note">
-      EL pago se realizo con firma etxc
+      {{payment.note}}
     </td>
   </tr>
 

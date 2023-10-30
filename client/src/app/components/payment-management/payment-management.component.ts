@@ -20,7 +20,7 @@ export class PaymentManagementComponent {
   ngOnInit(){
     let path = this._router.url.split("/").slice(-1).pop().split("?")[0];
     // Si la ruta a la que accede no es ninguna de las correctas se establece el search-candidates
-    if (['records', 'pending-payments', 'failed-payments'].includes(path)) {
+    if (['records', 'pending-payments', 'exit-payments'].includes(path)) {
       this.menuIdentifier = path;
     }
   }
