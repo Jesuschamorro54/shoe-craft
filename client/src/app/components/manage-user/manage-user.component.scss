@@ -1,0 +1,54 @@
+@import './../../../assets/style/colors.scss';
+
+main{
+    display: flex;
+
+}
+
+.left{
+    border-radius: 6px;
+    width: 30%;
+    border: 1px solid $color-gray;
+    padding: 2rem;
+    height: 200px;
+
+    h3{
+        color:$color-primate-red;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    .option{
+        cursor: pointer;
+        padding: 0.5rem 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 4px;
+
+        .container-defec{
+            display: flex;
+        }
+
+        p{
+            font-size: 17px;
+            color:$color-gray-strong;
+        }
+
+        &:hover{
+            background-color: #dee1e7;
+        }
+        
+    }
+
+    .icon{
+        margin-right: 10px;
+    } 
+}
+
+
+.right{
+    width: 80%;
+    margin-left: 1.5rem;
+}
