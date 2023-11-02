@@ -9,13 +9,15 @@ main{
 
     h3{
       color:$color-primate-red;
-      margin: 0.5rem 0;
+      margin-bottom: 1rem;
+      font-weight: 600;
       letter-spacing: 1px;
+      font-size: 22px;
     }
 
     .description{
       color:$color-gray-strong;
-      font-size: 16px;
+      font-size: 17px;
     }
   }
 
@@ -30,7 +32,7 @@ main{
 
       .btn{
         padding: 10px;
-        font-size: 15px;
+        font-size: 18px;
         background-color: transparent;
         border: 0px;
         cursor: pointer;

@@ -1,5 +1,5 @@
 <ul class="employees" *ngIf="_employeesService.employeesList.length>0">
-  <li *ngFor="let employee of _employeesService.employeesList">
+  <li *ngFor="let employee of employees">
 
     <div class="employee-information">
       <img [src]="employee.img" alt="" class="profile">

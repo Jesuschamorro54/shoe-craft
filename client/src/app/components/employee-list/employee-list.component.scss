@@ -25,31 +25,31 @@
       }
     }
 
+    p{
+      margin-bottom: 4px;
+    }
+
     .name{
-      font-size: 18px;
+      font-size: 20px;
     }
 
     .role{
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .date{
       color:gray;
     }
 
-
-
-
     .group-btn{
       display: flex;
       flex-direction: column;
 
       .btn{
-        padding: 0.5rem;
+        padding: 0.5rem 1rem;
         border-radius: 4px;
         cursor: pointer;
-
-
+        font-size: 18px;
       }
 
       .edit{
