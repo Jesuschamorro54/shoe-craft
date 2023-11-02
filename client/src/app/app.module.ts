@@ -13,6 +13,7 @@ import { ManageUserComponent } from './components/manage-user/manage-user.compon
 import { CreateUserModalComponent } from './components/modals/create-user-modal/create-user-modal.component';
 import { FormsModule } from '@angular/forms';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
+import { SkeletonListEmployeesComponent } from './components/skeleton/skeleton-list-employees/skeleton-list-employees.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
     PaymentListComponent,
     ManageUserComponent,
     CreateUserModalComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    SkeletonListEmployeesComponent,
   ],
   imports: [
     BrowserModule,

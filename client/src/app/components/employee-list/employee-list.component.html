@@ -1,5 +1,5 @@
-<ul class="employees">
-  <li *ngFor="let employee of employeesList">
+<ul class="employees" *ngIf="_employeesService.employeesList.length>0">
+  <li *ngFor="let employee of _employeesService.employeesList">
 
     <div class="employee-information">
       <img [src]="employee.img" alt="" class="profile">
@@ -10,10 +10,11 @@
       </div>
     </div>
 
-
     <div class="group-btn">
       <button class="btn edit">Editar</button>
       <button class="btn delete">Eliminar</button>
     </div>
   </li>
 </ul>
+
+<app-skeleton-list-employees *ngIf="_employeesService.employeesList.length==0"></app-skeleton-list-employees>
