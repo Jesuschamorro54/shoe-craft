@@ -1,0 +1,69 @@
+@import './../../../assets/style/colors.scss';
+
+.employees{
+  list-style: none;
+
+  li{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 1rem 0.5rem;
+    background-color:#fff;
+    border: 1px solid $color-primate-red;
+    border-radius: 0.7rem;
+    align-items: center;
+
+    .employee-information{
+      display: flex;
+      align-items: center;
+
+      .profile{
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+    }
+
+    .name{
+      font-size: 18px;
+    }
+
+    .role{
+      font-size: 16px;
+    }
+
+    .date{
+      color:gray;
+    }
+
+
+
+
+    .group-btn{
+      display: flex;
+      flex-direction: column;
+
+      .btn{
+        padding: 0.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+
+
+      }
+
+      .edit{
+        margin-bottom: 0.5rem;
+        background-color: $color-primate-red;
+        border: 1px solid $color-primate-red;
+        color:#fff
+      }
+
+      .delete{
+        border: 1px solid gray;
+      }
+
+    }
+
+  }
+}

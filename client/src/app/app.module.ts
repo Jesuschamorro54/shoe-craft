@@ -11,6 +11,8 @@ import { ProductRegistrationComponent } from './components/product-registration/
 import { PaymentListComponent } from './components/payment-list/payment-list.component';
 import { ManageUserComponent } from './components/manage-user/manage-user.component';
 import { CreateUserModalComponent } from './components/modals/create-user-modal/create-user-modal.component';
+import { FormsModule } from '@angular/forms';
+import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,13 @@ import { CreateUserModalComponent } from './components/modals/create-user-modal/
     ProductRegistrationComponent,
     PaymentListComponent,
     ManageUserComponent,
-    CreateUserModalComponent
+    CreateUserModalComponent,
+    EmployeeListComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

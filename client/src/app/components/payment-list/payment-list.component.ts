@@ -30,7 +30,7 @@ export class PaymentListComponent implements OnInit {
       value: '5000000',
       paymentAt: '21/07/2023',
       paymentMethod: 'Bancolombia',
-      status: 'Exitoso',
+      status: 'Pendiente',
       state: 1,
       note: 'EL pago se realizo con firma etxc'
     },
@@ -51,7 +51,7 @@ export class PaymentListComponent implements OnInit {
 
   paymentsCopy;
   filterType: string = '';
-  editing:string = '';
+  editing;
 
   constructor(
     private _activeRoute: ActivatedRoute,
@@ -80,11 +80,17 @@ export class PaymentListComponent implements OnInit {
   }
 
   edit(id:string):void{
-    this.editing = id;
+    this.editing = this.paymentList.find( payment => payment.id === id );
   }
 
   cancelEdit(){
     this.editing = '';
+  }
+
+  save(){
+    const index = this.paymentList.findIndex( payment => payment.id === this.editing.id );
+    this.paymentList[index] = { ...this.editing }
+    this.editing = null;
   }
 
   get payments(){

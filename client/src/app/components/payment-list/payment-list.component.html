@@ -28,16 +28,25 @@
 
     <td>{{payment.documentNumber}}</td>
     <td>{{payment.createdAt}}</td>
-    <td>{{payment.value}}</td>
+    <!-- <td>{{payment.value}}</td> -->
+    <td>
+      <p *ngIf="!editing || editing.id !== payment.id">{{payment.value}}</p>
+      <input
+        *ngIf="editing && editing.id === payment.id"
+        class="input-value" type="text"
+        [disabled]="editing.id !== payment.id"
+        [(ngModel)]="editing.value"
+      >
+    </td>
     <td>{{payment.paymentAt}}</td>
     <td>{{payment.paymentMethod}}</td>
     <td>{{payment.status}}</td>
 
     <td *ngIf="filterType === 'Pendiente'" class="action">
-      <span *ngIf="!editing" (click)="edit(payment.id)" ><i class="fa-solid fa-pen"></i></span>
+      <span *ngIf="!editing" (click)="edit(payment.id)"><i class="fa-solid fa-pen"></i></span>
       <span *ngIf="!editing"><i class="fa-solid fa-trash"></i></span>
-      <span *ngIf="editing && payment.id === editing"><i class="fa-solid fa-floppy-disk"></i></span>
-      <span *ngIf="editing && payment.id === editing" (click)="cancelEdit()"><i class="fa-solid fa-xmark"></i></span>
+      <span *ngIf="editing && payment.id === editing.id" (click)="save()"><i class="fa-solid fa-floppy-disk"></i></span>
+      <span *ngIf="editing && payment.id === editing.id" (click)="cancelEdit()"><i class="fa-solid fa-xmark"></i></span>
     </td>
 
     <td class="note">

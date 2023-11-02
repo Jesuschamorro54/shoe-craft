@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { PaymentManagementComponent } from './components/payment-management/payment-management.component';
 import { PaymentListComponent } from './components/payment-list/payment-list.component';
+import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
     { path: 'exit-payments', component: PaymentListComponent },
     ]
   },
+  { path: 'employees', component: EmployeeListComponent },
 
 ];
 

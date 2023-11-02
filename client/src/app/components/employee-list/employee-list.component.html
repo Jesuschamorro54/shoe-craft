@@ -1,0 +1,19 @@
+<ul class="employees">
+  <li *ngFor="let employee of employeesList">
+
+    <div class="employee-information">
+      <img [src]="employee.img" alt="" class="profile">
+      <div>
+          <p class="name">{{employee.name}}</p>
+          <p class="role">({{employee.role}})</p>
+          <p class="date">Laborando desde: {{employee.admissionDate}}</p>
+      </div>
+    </div>
+
+
+    <div class="group-btn">
+      <button class="btn edit">Editar</button>
+      <button class="btn delete">Eliminar</button>
+    </div>
+  </li>
+</ul>

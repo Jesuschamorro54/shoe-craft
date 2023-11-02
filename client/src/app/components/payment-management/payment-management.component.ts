@@ -23,6 +23,11 @@ export class PaymentManagementComponent {
     if (['records', 'pending-payments', 'exit-payments'].includes(path)) {
       this.menuIdentifier = path;
     }
+    else{
+      console.log("entre re");
+      const url = this._router.url;
+      this._router.navigate([url.split("?")[0]+'/records']);
+    }
   }
 
   btbMenu(path:string) {
