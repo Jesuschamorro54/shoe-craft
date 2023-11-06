@@ -2,7 +2,7 @@ import jwt
 import inspect
 from config.configure import db
 from datetime import datetime, timedelta, timezone
-from sqlalchemy import and_, or_
+from sqlalchemy import and_, or_, update
 
 SECRET_KEY = "a6U7MEQ6rzasJz4A"
 
@@ -207,6 +207,14 @@ def search(Table, params, fields=None):
         result = [item.to_dict() for item in items]
     return result
 
+
+def xupdate(Table, params, data):
+    action = update(Table)
+    filters = build_filters(Table, params)
+
+    statement = action.where(*filters).values(**data)
+
+    return statement
 
 def delete(Table, params):
     result = {'row_affect': 0}

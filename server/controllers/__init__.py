@@ -11,3 +11,6 @@ from . import delete_products
 
 from . import post_packages
 from . import post_products
+from . import post_payments
+
+from . import put_products

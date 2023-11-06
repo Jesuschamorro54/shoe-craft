@@ -12,9 +12,8 @@ class Payments(db.Model):
     state = db.Column(db.Integer, default=1)
     date = db.Column(db.DateTime(), default=datetime.utcnow())
 
-    def __init__(self, employee_id, total):
+    def __init__(self, employee_id):
         self.employee_id = employee_id
-        self.total = total
 
     def to_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
@@ -26,6 +25,7 @@ class PaymentsSchema(ma.Schema):
 
     id = fields.Int(dump_only=True)
     employee_id = fields.Int(required=True)
+
     total = fields.Float()
     state = fields.Int()
     date = fields.Date()

@@ -34,7 +34,10 @@ def PyMysqlIntegrityError(error):
     
     match = str(error.args[0]).replace('(', '').split(') ')
 
-    error_message = match[1].replace(')', '').split(',')[1]
+    try:
+        error_message = match[1].replace(')', '').split(',')[1]
+    except:
+        pass
 
     print(error_message)
 

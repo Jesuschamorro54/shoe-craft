@@ -37,7 +37,7 @@ def api_get_products(claims=None):
     return response
 
 
-@products_paths.route('/products/<id>', methods=['DELETE'])
+@products_paths.route('/products/<id>', methods=['PUT', 'DELETE'])
 @admin_required
 def api_delete_products(id, claims=None):
     try:
@@ -49,6 +49,11 @@ def api_delete_products(id, claims=None):
         if event['request']['method'] == 'DELETE':
 
             execution = delete_products.main(event)
+            response = (execution['body'], execution['statusCode'])
+
+        if event['request']['method'] == 'PUT':
+
+            execution = put_products.main(event)
             response = (execution['body'], execution['statusCode'])
         
     except Exception as e:
