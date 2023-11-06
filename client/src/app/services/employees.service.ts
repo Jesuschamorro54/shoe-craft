@@ -1,74 +1,62 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { EmployeeModel } from '../models/employee.model';
+import { Observable, catchError, map, of, retry } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeesService {
 
-  employeesList = [];
-
-  employeesListData = [
-    {
-      id:'1',
-      name: 'Sara Acuña Benavides 1',
-      role: 'Cortador',
-      admissionDate:'21-02-2012',
-      state: -1,
-      img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGseuv9n_kJhFzlq1RjQNPQ-OqL9YbgMKCWNBzKMaLCO4q_WQiWzmfjzPhcYyLHPscyl8&usqp=CAU'
-    },
-    {
-      id:'1',
-      name: 'Jesus Chamorro Martines 1',
-      role: 'Ensamblador',
-      admissionDate:'29-09-2023',
-      state: 1,
-      img:'https://i.insider.com/5899ffcf6e09a897008b5c04?width=1000&format=jpeg&auto=webp'
-    },
-    {
-      id:'1',
-      name: 'Sara Acuña Benavides 2',
-      role: 'Cortador',
-      admissionDate:'21-02-2012',
-      state: 1,
-      img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGseuv9n_kJhFzlq1RjQNPQ-OqL9YbgMKCWNBzKMaLCO4q_WQiWzmfjzPhcYyLHPscyl8&usqp=CAU'
-    },
-    {
-      id:'1',
-      name: 'Jesus Chamorro Martines 2',
-      role: 'Ensamblador',
-      admissionDate:'29-09-2023',
-      state: -1,
-      img:'https://i.insider.com/5899ffcf6e09a897008b5c04?width=1000&format=jpeg&auto=webp'
-    },{
-      id:'1',
-      name: 'Sara Acuña Benavides 3',
-      role: 'Cortador',
-      admissionDate:'21-02-2012',
-      state: 1,
-      img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGseuv9n_kJhFzlq1RjQNPQ-OqL9YbgMKCWNBzKMaLCO4q_WQiWzmfjzPhcYyLHPscyl8&usqp=CAU'
-    },
-    {
-      id:'1',
-      name: 'Jesus Chamorro Martines 3',
-      role: 'Ensamblador',
-      admissionDate:'29-09-2023',
-      state: 1,
-      img:'https://i.insider.com/5899ffcf6e09a897008b5c04?width=1000&format=jpeg&auto=webp'
-    },
-  ];
+  baseURl: string = 'http://jesusthor.pythonanywhere.com/api/employees';
+  defaultImage: string = 'https://i.insider.com/5899ffcf6e09a897008b5c04?width=1000&format=jpeg&auto=webp';
+  employeesList:EmployeeModel[] = [];
 
   loading = false;
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+    private _authService: AuthService,
+  ) { }
 
-  getEmployees():Promise<any[]>{
-    return new Promise( (resolve, reject) => {
-      this.loading = true;
-      setTimeout(() => {
-        resolve(this.employeesListData);
-        this.loading = false;
-      }, 1000);
-    })
+  getEmployees():Observable<EmployeeModel[]>{
+    const headers = {
+      Authorization: this._authService.token
+    }
+    return this.http.get(this.baseURl,{headers}).pipe(
+      map( response => {
+        if (response['data'].length > 0) {
+          response['data'].forEach(employee => {
+            this.employeesList.push(this.format(employee));
+          });
+          return this.employeesList;
+        }
+      }),
+      retry(3),
+      catchError( err => of([]))
+    )
+  }
+
+  createEmployee(data){
+
+  }
+
+  deleteEmployee(id:string){
+    const url = this.baseURl + `/${id}`;
+  }
+
+  format(employee):EmployeeModel{
+    return {
+      id: employee.id,
+      dni: employee.dni,
+      email: employee.email,
+      name: employee.name,
+      role: employee.role,
+      state: employee.state || 1,
+      img: employee.img || this.defaultImage,
+      admissionDate: employee.admission_date || '29-09-2023',
+    }
   }
 
 }
