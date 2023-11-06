@@ -61,8 +61,9 @@
       }
 
       .delete{
-        border: 1px solid gray;
+        border: 1px solid $color-primate-red;
         background-color: $light-gray-color;
+        color: $color-primate-red;
       }
 
     }

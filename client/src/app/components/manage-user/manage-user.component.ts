@@ -12,6 +12,8 @@ export class ManageUserComponent implements OnInit {
   employees:EmployeeModel[] = [];
   option: number = 1;
 
+  showCreateUser = false;
+
   constructor(
     public _employeesService: EmployeesService
   ){}
@@ -25,6 +27,13 @@ export class ManageUserComponent implements OnInit {
   filterEmployees(state = 1){
     this.employees = this._employeesService.employeesList.filter( employee => employee.state === state );
     this.option = state;
+    this.showCreateUser = false;
+  }
+
+
+  createUser(){
+    this.showCreateUser = true;
+    console.log("CREATE")
   }
 
   get actives(){

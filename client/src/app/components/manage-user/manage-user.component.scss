@@ -12,13 +12,14 @@ main{
     }
 
     .left{
-        border-radius: 6px;
-        width: 30%;
-        border: 1px solid $color-gray;
-        padding: 2rem;
-        height: 200px;
+      border-radius: 6px;
+      width: 35%;
+      border: 1px solid $color-gray;
+      padding: 2rem;
+      height: 300px;
 
-
+      .menu{
+        margin-bottom: 3rem;
         .option{
             cursor: pointer;
             padding: 0.5rem 10px;
@@ -49,6 +50,23 @@ main{
         .icon{
             margin-right: 10px;
         }
+      }
+
+
+      .register-employee{
+        cursor: pointer;
+        width: 100%;
+        border-radius: 4px;
+        background-color: $color-primate-red;
+        color: #fff;
+        border: 1px solid $color-primate-red;
+        padding: 0.5rem 1rem;
+        font-weight: 600;
+        &:hover{
+          opacity: 0.7;
+        }
+
+      }
     }
 
 
