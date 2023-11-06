@@ -50,6 +50,7 @@
         border-radius: 4px;
         cursor: pointer;
         font-size: 18px;
+        font-weight: 600;
       }
 
       .edit{
@@ -61,6 +62,7 @@
 
       .delete{
         border: 1px solid gray;
+        background-color: $light-gray-color;
       }
 
     }

@@ -17,8 +17,8 @@ main{
         border: 1px solid $color-gray;
         padding: 2rem;
         height: 200px;
-    
-    
+
+
         .option{
             cursor: pointer;
             padding: 0.5rem 10px;
@@ -26,28 +26,32 @@ main{
             justify-content: space-between;
             align-items: center;
             border-radius: 4px;
-    
+
             .container-defec{
                 display: flex;
             }
-    
+
             p{
                 font-size: 18px;
                 color:$color-gray-strong;
             }
-    
+
             &:hover{
-                background-color: #dee1e7;
+              background-color: $light-gray-color;
             }
-            
+
         }
-    
+
+        .option-selected{
+          background-color: $light-gray-color;
+        }
+
         .icon{
             margin-right: 10px;
-        } 
+        }
     }
-    
-    
+
+
     .right{
         width: 80%;
         margin-left: 1.5rem;

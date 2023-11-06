@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RemoveModalComponent } from '../modals/create-user-modal/remove-modal/remove-modal.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,11 +9,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NavBarComponent  implements OnInit{
 
+
   constructor(
     private _activeRoute: ActivatedRoute,
     private _router: Router,
   ){}
-  
+
   ngOnInit(): void {
   }
 
@@ -20,8 +22,7 @@ export class NavBarComponent  implements OnInit{
 
     window.open(url, '_blank');
   }
-  
-  
+
 
 }
 

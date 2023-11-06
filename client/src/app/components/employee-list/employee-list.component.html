@@ -12,9 +12,11 @@
 
     <div class="group-btn">
       <button class="btn edit">Editar</button>
-      <button class="btn delete">Eliminar</button>
+      <button class="btn delete" (click)="openDeleteModal()">Eliminar</button>
     </div>
   </li>
 </ul>
 
 <app-skeleton-list-employees *ngIf="_employeesService.employeesList.length==0"></app-skeleton-list-employees>
+
+<app-remove-modal></app-remove-modal>

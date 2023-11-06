@@ -1,28 +1,28 @@
 <main>
     <div class="left menu">
-        
+
         <h3 class="title">Gestionar mis empleados</h3>
 
-        <div class="option" (click)="filterEmployees(1)">
+        <div class="option" (click)="filterEmployees(1)" [ngClass]="{'option-selected': option === 1}">
             <div class="container-defec">
                 <span class="icon"><i class="fa-regular fa-address-book" style="color: #fa280a;font-size: 19px;"></i></span>
                 <p> Activos</p>
             </div>
-            <p>23</p>
+            <p>{{actives}}</p>
         </div>
 
-        <div class="option" (click)="filterEmployees(-1)">
+        <div class="option" (click)="filterEmployees(-1)" [ngClass]="{'option-selected': option === -1}" >
             <div  class="container-defec">
                 <span class="icon"> <i class="fa-solid fa-user-large-slash" style="color: #fa280a;font-size: 19px;"></i></span>
                 <p> Inactivos</p>
             </div>
-            <p>37</p>
-        </div>  
+            <p>{{inactives}}</p>
+        </div>
     </div>
 
 
     <div class="right">
-        <h3 class="title">Mis empleados (23)</h3>
+        <h3 class="title">Mis empleados</h3>
         <app-employee-list [employees]="employees" ></app-employee-list>
     </div>
 </main>

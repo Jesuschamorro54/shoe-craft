@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { EmployeesService } from 'src/app/services/employees.service';
+import { RemoveModalComponent } from '../modals/create-user-modal/remove-modal/remove-modal.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -8,6 +9,7 @@ import { EmployeesService } from 'src/app/services/employees.service';
 })
 export class EmployeeListComponent implements OnInit {
   @Input() employees;
+  @ViewChild(RemoveModalComponent) __removeModal: RemoveModalComponent;
 
   constructor(
     public _employeesService: EmployeesService
@@ -17,6 +19,11 @@ export class EmployeeListComponent implements OnInit {
     // this._employeesService.getEmployees();
   }
 
-  
+  openDeleteModal(){
+    this.__removeModal.openModal();
+    console.log("ABRIR MODAL");
+  }
+
+
 
 }
