@@ -22,13 +22,12 @@
     </div>
 
     <button class="register-employee" (click)="createUser()">Registrar empleado <i class="fa-solid fa-user-plus"></i></button>
-
   </div>
 
 
   <div class="right">
       <div *ngIf="!showCreateUser">
-        <h3 class="title">Mis empleados</h3>
+        <h3 class="title" *ngIf="_employeesService.employeesList.length>0">Mis empleados</h3>
         <app-employee-list [employees]="employees" ></app-employee-list>
       </div>
 
@@ -36,8 +35,6 @@
         <h3>Registrar empleado</h3>
         <app-create-employee ></app-create-employee>
       </div>
-
-
   </div>
 </main>
 

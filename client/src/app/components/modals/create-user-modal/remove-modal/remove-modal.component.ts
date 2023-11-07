@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-remove-modal',
@@ -6,19 +6,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./remove-modal.component.scss']
 })
 export class RemoveModalComponent {
+  @Output() onConfirm = new EventEmitter<boolean>();
 
   // Estas variables permiten llevar el control del modal (mostrar-ocultar)
   showModal = false;
   hiddenModal = false;
 
-
   constructor(
-
   ) { }
 
   ngOnInit(): void {
   }
 
+  confirmation():void{
+    this.onConfirm.emit(true);
+  }
 
   // Abrir el modal y pasar el ID del proyecto
   openModal() {
@@ -35,5 +37,4 @@ export class RemoveModalComponent {
     this.showModal = false;
     this.hiddenModal = true;
   }
-
 }

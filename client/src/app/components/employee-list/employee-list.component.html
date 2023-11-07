@@ -17,6 +17,16 @@
   </li>
 </ul>
 
+<div *ngIf="_employeesService.employeesList.length===0" class="warning">
+  <div class="description">
+    <h3>No tienes ningún empleado asociado aún</h3>
+    <span>Actualmente, no tienes ningún empleado asociado en tu sistema. </span> <br>
+    <span>Te invitamos a crear un nuevo empleado para comenzar a gestionar tu equipo</span>
+  </div>
+
+  <img src="https://img.freepik.com/vector-premium/presentacion-negocios-negociacion-proyecto-empleados-dibujos-animados-sentados-mesa-hablando-mujeres-discuten-cooperacion-lluvia-ideas-o-comunicacion-socios-reunion-vectorial_176516-3411.jpg?w=360" alt="empleado">
+</div>
+
 <app-skeleton-list-employees *ngIf="_employeesService.employeesList.length==0"></app-skeleton-list-employees>
 
-<app-remove-modal></app-remove-modal>
+<app-remove-modal #removeModal (onConfirm)="$event ? deleteEmployee(employees.id) : null"></app-remove-modal>

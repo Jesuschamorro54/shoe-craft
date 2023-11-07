@@ -30,7 +30,6 @@ export class ManageUserComponent implements OnInit {
     this.showCreateUser = false;
   }
 
-
   createUser(){
     this.showCreateUser = true;
     console.log("CREATE")

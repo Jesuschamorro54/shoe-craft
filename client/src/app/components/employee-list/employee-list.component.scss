@@ -70,3 +70,38 @@
 
   }
 }
+
+.warning{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 0.7rem;
+  align-items: center;
+  border: 1px solid $color-primate-red;
+
+  .description{
+    text-align: justify;
+
+    span{
+      font-size: 14px;
+    };
+
+    h3{
+      color: $color-primate-red;
+      letter-spacing: 1px;
+    }
+  }
+
+
+
+  img{
+    width: 300px;
+    border-radius: 4px;
+    margin-left: 20px;
+    /* Agrega sombra al div */
+    box-shadow: 4px 5px 5px $color-gray;
+  }
+
+}

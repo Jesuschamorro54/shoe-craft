@@ -3,8 +3,12 @@ export interface EmployeeModel{
   dni: string,
   email: string,
   name: string,
-  role: string,
+  role: "admin" | "cutter" | "trimmer" | "assembler",
   state: number,
   img: string,
-  admissionDate: Date
+  admissionDate: Date,
+
+  address: string;
+  phone: number;
+  gender: string
 }
