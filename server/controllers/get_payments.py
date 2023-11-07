@@ -1,16 +1,17 @@
 import json
 import pymysql
-from common.utils import build_filters, list_to_listdict, search, delete
+from common.utils import search
 
 from config.configure import db
 from common.exceptions import *
 from common.CustomLoggin import Logger
-from models.products import Products, ProductsSchema
+from models.payments import Payments, PaymentsSchema
+from models.pay_datails import PayDetails
 from werkzeug.security import check_password_hash
 
 
-product_schema = ProductsSchema()
-products_schemas = ProductsSchema(many=True)
+employee_schema = PaymentsSchema()
+employees_schemas = PaymentsSchema(many=True)
 logger = Logger()
 
 execution_message = '''
@@ -18,9 +19,18 @@ execution_message = '''
     Parameters: {0}
 '''
 
+fields = (
+    Payments.date,
+    Payments.id,
+    Payments.employee_id,
+    Payments.state,
+    Payments.total
+)
+
 def main(event):
     try:
 
+        # logger.info(event)
         params = {}
 
         # check optional pathParameters
@@ -34,26 +44,39 @@ def main(event):
             params.update({ k:json.loads(v) for k, v in query.items() })
 
 
-        user = event['authorizer']['jwt']
+        user = event['authorizer']['jwt']        
 
-        params['id']
+        authorized = user['role'] == 'admin'
+        if not authorized:
+            raise PermissionError()
 
         logger.info(execution_message.format(set(params)))
 
     except Exception as e:
-        logger.error(e)
         return InsufficientParametersException()
 
     result = { 'status': False,  'data': [] }
-    
-    result = delete(Products, params)
+     
+    payments = search(Payments, params)
 
-    if not result['status']:
+    for payment in payments:
+
+        params = {'payment_id': payment['id']}
+
+        detail = search(PayDetails, params)
+
+        payment.update({'details': detail})
+
+    result['data'] = payments
+
+    if result['data']:
+        result['status'] = True
+    else:
         result.update({
             'status': False,
             'data': [],
             'error': 'ResourceNotFoundException',
-            'errorMessage': 'The product does not exists.'
+            'errorMessage': 'The payments does not exists or role(s) are admin'
         })
 
     return {

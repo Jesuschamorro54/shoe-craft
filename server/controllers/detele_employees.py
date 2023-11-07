@@ -21,7 +21,6 @@ execution_message = '''
 def main(event):
     try:
 
-        logger.info(event)
         params = {}
 
         # check optional pathParameters
@@ -47,14 +46,11 @@ def main(event):
 
     result = { 'status': False,  'data': [] }
     
-    try:
-        result['data'] = delete(Employees, params)
-    except Exception as e:
-        print(e)
-        return PyMysqlIntegrityError(e)
+    
+    result = delete(Employees, params)
+    
 
-
-    if not result['data']:
+    if not result['status']:
 
         result.update({
             'status': False,

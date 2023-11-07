@@ -19,8 +19,6 @@ execution_message = '''
 def main(event):
     try:
 
-        logger.info(event)
-
         params = {}
         data = event['body']['data']
 
@@ -51,12 +49,7 @@ def main(event):
         return InsufficientParametersException()
     
 
-    statement = xupdate(Products, params, data)
-
-    db.session.execute(statement)
-    db.session.commit()
-
-    result = {'status': True, 'row_affects': 1}
+    result = xupdate(Products, params, data)
 
     return {
         'statusCode': 200,

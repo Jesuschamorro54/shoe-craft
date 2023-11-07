@@ -78,6 +78,7 @@ def main(event):
             details_data.append(detail_data.to_dict())
 
         payment_data.total = total_payment
+        db.session.commit()
 
         logger.info(f"Payment: { payment_data.to_dict() }")
 

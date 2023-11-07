@@ -55,20 +55,13 @@ def main(event):
         return InsufficientParametersException()
 
     result = { 'status': False,  'data': [] }
-    
-    try:
-        
-        
-        result['data'] = search(Employees, params, fields)
-        
-
-    except Exception as e:
-        print(e)
-        return PyMysqlIntegrityError(e)
+     
+    result['data'] = search(Employees, params, fields)
 
 
-    if not result['data']:
-
+    if result['data']:
+        result['status'] = True
+    else:
         result.update({
             'status': False,
             'data': [],

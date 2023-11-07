@@ -21,13 +21,14 @@ def api_get_packages(claims=None):
 
         event = generate_event(request, claims)
 
+        if event['request']['method'] == 'GET':
+            execution = get_payments.main(event)
+            response = (execution['body'], execution['statusCode'])
+
         if event['request']['method'] == 'POST':
 
             execution = post_payments.main(event)
             response = (execution['body'], execution['statusCode'])
-        
-        if event['request']['method'] == 'GET':
-            pass
 
     except Exception as e:
         logger.error(e)
