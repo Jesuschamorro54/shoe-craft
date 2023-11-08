@@ -1,11 +1,84 @@
 import { Injectable } from '@angular/core';
+import { Observable, catchError, map, of, retry } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  token:string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZG5pIjoiMTAwMjE1OTk4NSIsIm5hbWUiOiJKZXN1cyBDaGFtb3JybyIsImVtYWlsIjoiamVzdXNmZWxpNTRAZ21haWwuY29tIiwic3RhdGUiOjEsInJvbGUiOiJhZG1pbiIsImNyZWF0aW9uIjoiMjAyMy0xMC0xMiAwNTowNToxMyIsImV4cCI6MTY5OTQ1OTU1NC41NjY3OTd9.m7R8yAwAKfg1mdAmd4MpLAoeMpfyzVIKtJM-m630VEw';
+  public token:string = '';
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+  ) { }
+
+  logIn(data):Observable<any>{
+    const url = 'http://jesusthor.pythonanywhere.com/api/auth/login';
+    return this.http.post(url,{ data })
+    .pipe(map((response:any) => {
+      if (response.status){
+        const { data } = response
+        if (data.status) {
+          localStorage.setItem('token', data.idToken);
+          this.setToken(data.idToken);
+          return true
+        }else{
+          return false
+        }
+      }
+    }),
+    retry(3),
+    catchError(this.handleError<any>('logIn', [])));
+  }
+
+  verifyToken():Observable<boolean>{
+    const token = localStorage.getItem('token');
+    if (!token) return
+
+    const urlServer = 'http://localhost:5000/verify';
+    return this.http.post(urlServer, {token}).pipe(
+      map( (response:any) => {
+        if (response.status) {
+          this.setToken(token);
+          return true;
+        }else{
+          localStorage.removeItem('token');
+          this.setToken('');
+          return false;
+        }
+      }),
+      catchError(this.handleError<any>('verify', []))
+    )
+
+  }
+
+  logOut(){
+    this.token = '';
+    localStorage.removeItem('token');
+  }
+
+  get isAuth():boolean{
+    return !!this.token;
+  }
+
+  private setToken(token){
+    this.token = token;
+  }
+
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+
+      console.log('%cerror::', 'color:red', error); // log to console instead
+      // (error.error); // log to console instead
+      // TODO: better job of transforming error for user consumption
+      // this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
 }

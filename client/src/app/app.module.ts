@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,11 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
 import { SkeletonListEmployeesComponent } from './components/skeleton/skeleton-list-employees/skeleton-list-employees.component';
 import { RemoveModalComponent } from './components/modals/create-user-modal/remove-modal/remove-modal.component';
 import { CreateEmployeeComponent } from './components/create-employee/create-employee.component';
+import { AuthService } from './services/auth.service';
+
+export const getToken = (authService: AuthService, ) => {
+  return () => authService.verifyToken();
+}
 
 @NgModule({
   declarations: [
@@ -39,7 +44,15 @@ import { CreateEmployeeComponent } from './components/create-employee/create-emp
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: getToken,
+      deps: [AuthService],
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,25 +9,25 @@
         <h3>Inicia sesión</h3>
     </div>
 
-
-    <form class="login-form">
+    <form class="login-form" [formGroup]="userLogin">
       <label for="user">Identificación
         <div class="desig">
-          <input type="text" id="numeroInput" placeholder="Ingrese los números de su Identificación" pattern="[0-9]*" (input)="onInputUser($event)">
+          <input type="text" id="numeroInput" placeholder="Ingrese los números de su Identificación" pattern="[0-9]*" (input)="onInputUser($event)" formControlName="dni">
           <i class="fa-solid fa-user"></i>
         </div>
       </label>
 
       <label for="password">Contraseña
         <div class="desig">
-          <input [type]="showPassword ? 'text' : 'password'" name="password" placeholder="Ingrese su contraseña">
+          <input [type]="showPassword ? 'text' : 'password'" name="password" placeholder="Ingrese su contraseña" formControlName="password">
           <span (click)="seePassword()"><i class="fa-solid fa-eye"></i></span>
         </div>
       </label>
 
       <a class="forget-password">¿Olvidaste tu contraseña?</a>
 
-      <button class="login-button" type="submit"><span>Iniciar sesión</span>
+      <button class="login-button" type="submit" form="userLogin" (click)="logIn()">
+        <span>Iniciar sesión</span>
         <i class="fa-solid fa-arrow-right"></i>
       </button>
 

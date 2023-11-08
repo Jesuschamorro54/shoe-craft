@@ -12,3 +12,11 @@ export interface EmployeeModel{
   phone: number;
   gender: string
 }
+
+export interface PaymentsModel{
+  id: number,
+  total:number,
+  state:boolean,
+  date:Date
+}
+
