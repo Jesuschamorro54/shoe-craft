@@ -51,10 +51,15 @@
   </form>
 
   <div class="group-btn">
-    <button class="btn cancel">Cancelar</button>
 
-    <button class="btn save" type="submit" [disabled]="employeeForm.invalid" form="registerEmployee" >Guardar</button>
+    <ng-container *ngIf="!loading">
+      <button class="btn cancel">Cancelar</button>
+      <button class="btn save" type="submit" [disabled]="employeeForm.invalid" form="registerEmployee" >Guardar</button>
+    </ng-container>
+
+    <span class="loader" *ngIf="loading"></span>
   </div>
+
 
   <div *ngIf="successMessage" class="success-message">
     {{ successMessage }}

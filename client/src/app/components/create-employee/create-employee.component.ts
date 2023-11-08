@@ -10,6 +10,7 @@ import { EmployeesService } from 'src/app/services/employees.service';
 export class CreateEmployeeComponent {
   employeeForm: FormGroup;
   successMessage: string | null = null;
+  loading:boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,8 +36,8 @@ export class CreateEmployeeComponent {
   }
 
   save() {
-    console.log("entre: ")
     if (this.employeeForm.valid) {
+      this.loading = true;
       // Aquí puedes enviar los datos del formulario a través de una solicitud HTTP o realizar otras acciones.
 
       const employeeInfor={
@@ -50,22 +51,23 @@ export class CreateEmployeeComponent {
         password: "shoelogix123"
       };
 
-      this._employeesService.createEmployee(employeeInfor).subscribe(response =>{
-        if (response.status){
-          const newEmployee = this._employeesService.format(response)
-          this._employeesService.employeesList.unshift(newEmployee);
+      this._employeesService.createEmployee(employeeInfor).subscribe({
+        next: response =>{
+          if (response.status){
+            const newEmployee = this._employeesService.format(response)
+            this._employeesService.employeesList.unshift(newEmployee);
+             // Mostrar el mensaje de éxito y luego limpiarlo después de unos segundos
+            this.successMessage = "¡Usuario creado con éxito!";
+            setTimeout(() => {
+              this.successMessage = null;
+            }, 5000);
+            // Reiniciar el formulario
+            this.employeeForm.reset();
 
-
-           // Mostrar el mensaje de éxito y luego limpiarlo después de unos segundos
-          this.successMessage = "¡Usuario creado con éxito!";
-          setTimeout(() => {
-            this.successMessage = null;
-          }, 5000);
-
-          // Reiniciar el formulario
-          this.employeeForm.reset();
-
-          }
+            }
+        },
+        error: (error) => console.log('Any was wrong'),
+        complete: () => this.loading = false
       });
 
 
