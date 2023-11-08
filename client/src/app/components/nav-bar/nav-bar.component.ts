@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { RemoveModalComponent } from '../modals/create-user-modal/remove-modal/remove-modal.component';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,16 +11,16 @@ export class NavBarComponent  implements OnInit{
 
 
   constructor(
-    private _activeRoute: ActivatedRoute,
     private _router: Router,
+    public _authService: AuthService,
   ){}
 
   ngOnInit(): void {
   }
 
   goToUrl(url){
-
-    window.open(url, '_blank');
+    this._router.navigate([url])
+    // window.open(url, '_blank');
   }
 
 

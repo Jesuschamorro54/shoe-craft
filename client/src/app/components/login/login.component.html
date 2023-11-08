@@ -26,10 +26,12 @@
 
       <a class="forget-password">¿Olvidaste tu contraseña?</a>
 
-      <button class="login-button" type="submit" form="userLogin" (click)="logIn()">
+      <button class="login-button" type="submit" form="userLogin" (click)="logIn()" [disabled]="loading" *ngIf="!loading">
         <span>Iniciar sesión</span>
         <i class="fa-solid fa-arrow-right"></i>
       </button>
+
+      <span class="loader" *ngIf="loading"></span>
 
       <span class="warning">Recuerda que los datos deben estar activos por la empresa</span>
 

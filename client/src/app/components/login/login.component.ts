@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent {
   userLogin: FormGroup;
   showPassword:boolean = false;
+  loading:boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,17 +32,21 @@ export class LoginComponent {
 
   logIn(){
     if (this.userLogin.valid) {
+      this.loading = true;
       const userData = this.userLogin.value;
-      this._authService.logIn(userData).subscribe(response =>{
-        if (response) {
-          this._router.navigate(['payment-management/records'])
-        }else{
-          //show message
-        }
+      this._authService.logIn(userData).subscribe({
+        next: (response) => {
+          if (response) {
+            this._router.navigate(['payment-management/records'])
+          }
+        },
+        error:(err) => {
+            console.log('Any was wrong!!')
+        },
+        complete: () => {
+          this.loading = false;
+        },
       })
-
-    } else {
-      console.log("Error:Datos incorrectos")
     }
   }
 

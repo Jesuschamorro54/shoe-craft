@@ -20,7 +20,7 @@ const routes: Routes = [
   },
 
   { path: 'employees', component: ManageUserComponent, canActivate: [authGuard]},
-
+  { path: '**', redirectTo: '/login', pathMatch: 'full'  }
 ];
 
 @NgModule({
