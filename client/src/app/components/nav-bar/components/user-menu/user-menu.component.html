@@ -1,0 +1,21 @@
+<div class="action">
+
+  <div class="profile" (click)="menuToggle()">
+    <img src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png" />
+  </div>
+
+  <div class="menu" *ngIf="isMenuOpen">
+    <h3>Sara Acuña Benavides<br />
+      <span class="role">(Administrador)</span>
+    </h3>
+
+    <ul>
+      <li>
+        <a (click)="goToUrl('employees')"><i class="fa-solid fa-user-group"></i><span>Mis empleados</span></a>
+      </li>
+      <li>
+        <a (click)="longOut()"> <i class="fa-solid fa-right-from-bracket"></i><span>Cerrar Sesión</span></a>
+      </li>
+    </ul>
+  </div>
+</div>

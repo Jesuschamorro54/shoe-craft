@@ -9,7 +9,6 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavBarComponent  implements OnInit{
 
-
   constructor(
     private _router: Router,
     public _authService: AuthService,
@@ -20,10 +19,7 @@ export class NavBarComponent  implements OnInit{
 
   goToUrl(url){
     this._router.navigate([url])
-    // window.open(url, '_blank');
   }
-
-
 }
 
 

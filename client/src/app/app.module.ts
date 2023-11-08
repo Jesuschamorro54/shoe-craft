@@ -17,6 +17,7 @@ import { SkeletonListEmployeesComponent } from './components/skeleton/skeleton-l
 import { RemoveModalComponent } from './components/modals/create-user-modal/remove-modal/remove-modal.component';
 import { CreateEmployeeComponent } from './components/create-employee/create-employee.component';
 import { AuthService } from './services/auth.service';
+import { UserMenuComponent } from './components/nav-bar/components/user-menu/user-menu.component';
 
 export const getToken = (authService: AuthService, ) => {
   return () => authService.verifyToken();
@@ -36,6 +37,7 @@ export const getToken = (authService: AuthService, ) => {
     SkeletonListEmployeesComponent,
     RemoveModalComponent,
     CreateEmployeeComponent,
+    UserMenuComponent,
   ],
   imports: [
     BrowserModule,
