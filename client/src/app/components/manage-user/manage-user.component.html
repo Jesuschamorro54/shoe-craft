@@ -1,0 +1,41 @@
+<main>
+  <div class="left">
+    <div class="menu">
+
+      <h3 class="title">Gestionar mis empleados</h3>
+
+      <div class="option" (click)="filterEmployees(1)" [ngClass]="{'option-selected': option === 1}">
+          <div class="container-defec">
+              <span class="icon"><i class="fa-regular fa-address-book" style="color: #fa280a;font-size: 19px;"></i></span>
+              <p> Activos</p>
+          </div>
+          <p>{{actives}}</p>
+      </div>
+
+      <div class="option" (click)="filterEmployees(-1)" [ngClass]="{'option-selected': option === -1}" >
+          <div  class="container-defec">
+              <span class="icon"> <i class="fa-solid fa-user-large-slash" style="color: #fa280a;font-size: 19px;"></i></span>
+              <p> Inactivos</p>
+          </div>
+          <p>{{inactives}}</p>
+      </div>
+    </div>
+
+    <button class="register-employee" (click)="createUser()">Registrar empleado <i class="fa-solid fa-user-plus"></i></button>
+  </div>
+
+
+  <div class="right">
+      <div *ngIf="!showCreateUser">
+        <h3 class="title" *ngIf="_employeesService.employeesList.length>0">Mis empleados</h3>
+        <app-employee-list [employees]="employees" ></app-employee-list>
+      </div>
+
+      <div *ngIf="showCreateUser">
+        <h3>Registrar empleado</h3>
+        <app-create-employee ></app-create-employee>
+      </div>
+  </div>
+</main>
+
+

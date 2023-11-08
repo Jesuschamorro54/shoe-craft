@@ -1,0 +1,77 @@
+@import './../../../assets/style/colors.scss';
+
+main{
+    display: flex;
+
+    h3{
+        color:$color-primate-red;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-size: 22px;
+    }
+
+    .left{
+      border-radius: 6px;
+      width: 35%;
+      border: 1px solid $color-gray;
+      padding: 2rem;
+      height: 300px;
+
+      .menu{
+        margin-bottom: 3rem;
+        .option{
+            cursor: pointer;
+            padding: 0.5rem 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+
+            .container-defec{
+                display: flex;
+            }
+
+            p{
+                font-size: 18px;
+                color:$color-gray-strong;
+            }
+
+            &:hover{
+              background-color: $light-gray-color;
+            }
+
+        }
+
+        .option-selected{
+          background-color: $light-gray-color;
+        }
+
+        .icon{
+            margin-right: 10px;
+        }
+      }
+
+
+      .register-employee{
+        cursor: pointer;
+        width: 100%;
+        border-radius: 4px;
+        background-color: $color-primate-red;
+        color: #fff;
+        border: 1px solid $color-primate-red;
+        padding: 0.5rem 1rem;
+        font-weight: 600;
+        &:hover{
+          opacity: 0.7;
+        }
+
+      }
+    }
+
+
+    .right{
+        width: 80%;
+        margin-left: 1.5rem;
+    }
+}

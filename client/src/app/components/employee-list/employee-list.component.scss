@@ -1,0 +1,107 @@
+@import './../../../assets/style/colors.scss';
+
+.employees{
+  list-style: none;
+
+  li{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 1rem 0.5rem;
+    background-color:#fff;
+    border: 1px solid $color-primate-red;
+    border-radius: 0.7rem;
+    align-items: center;
+
+    .employee-information{
+      display: flex;
+      align-items: center;
+
+      .profile{
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+    }
+
+    p{
+      margin-bottom: 4px;
+    }
+
+    .name{
+      font-size: 20px;
+    }
+
+    .role{
+      font-size: 18px;
+    }
+
+    .date{
+      color:gray;
+    }
+
+    .group-btn{
+      display: flex;
+      flex-direction: column;
+
+      .btn{
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .edit{
+        margin-bottom: 0.5rem;
+        background-color: $color-primate-red;
+        border: 1px solid $color-primate-red;
+        color:#fff
+      }
+
+      .delete{
+        border: 1px solid $color-primate-red;
+        background-color: $light-gray-color;
+        color: $color-primate-red;
+      }
+
+    }
+
+  }
+}
+
+.warning{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 0.7rem;
+  align-items: center;
+  border: 1px solid $color-primate-red;
+
+  .description{
+    text-align: justify;
+
+    span{
+      font-size: 14px;
+    };
+
+    h3{
+      color: $color-primate-red;
+      letter-spacing: 1px;
+    }
+  }
+
+
+
+  img{
+    width: 300px;
+    border-radius: 4px;
+    margin-left: 20px;
+    /* Agrega sombra al div */
+    box-shadow: 4px 5px 5px $color-gray;
+  }
+
+}

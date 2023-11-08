@@ -1,0 +1,58 @@
+
+<table class="tb-payments" cellspacing="0">
+
+  <tr class="table-header">
+    <th>Nombre</th>
+    <th>Identificación</th>
+    <th>Fecha</th>
+    <th>Valor $</th>
+    <th>Fecha de pago</th>
+    <th>Medio</th>
+    <th>Estado</th>
+    <th *ngIf="filterType === 'Pendiente'" >Acciones</th>
+    <th>Nota</th>
+  </tr>
+
+  <tr class="payment-information" *ngFor="let payment of payments">
+
+    <td class="infor-user">
+      <div>
+        <img src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png" alt="">
+
+        <div class="name">
+          <p>{{payment.name}}</p>
+          <p>({{payment.role}})</p>
+        </div>
+      </div>
+    </td>
+
+    <td>{{payment.documentNumber}}</td>
+    <td>{{payment.createdAt}}</td>
+    <!-- <td>{{payment.value}}</td> -->
+    <td>
+      <p *ngIf="!editing || editing.id !== payment.id">{{payment.value}}</p>
+      <input
+        *ngIf="editing && editing.id === payment.id"
+        class="input-value" type="text"
+        [disabled]="editing.id !== payment.id"
+        [(ngModel)]="editing.value"
+      >
+    </td>
+    <td>{{payment.paymentAt}}</td>
+    <td>{{payment.paymentMethod}}</td>
+    <td>{{payment.status}}</td>
+
+    <td *ngIf="filterType === 'Pendiente'" class="action">
+      <span *ngIf="!editing" (click)="edit(payment.id)"><i class="fa-solid fa-pen"></i></span>
+      <span *ngIf="!editing"><i class="fa-solid fa-trash"></i></span>
+      <span *ngIf="editing && payment.id === editing.id" (click)="save()"><i class="fa-solid fa-floppy-disk"></i></span>
+      <span *ngIf="editing && payment.id === editing.id" (click)="cancelEdit()"><i class="fa-solid fa-xmark"></i></span>
+    </td>
+
+    <td class="note">
+      {{payment.note}}
+    </td>
+  </tr>
+
+</table>
+

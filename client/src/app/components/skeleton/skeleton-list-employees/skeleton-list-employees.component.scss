@@ -1,0 +1,89 @@
+@import './../../../../assets/style/colors.scss';
+
+.employees{
+  list-style: none;
+
+  li{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 1rem 0.5rem;
+    background-color:#fff;
+    border: 1px solid $color-gray;
+    border-radius: 0.7rem;
+    align-items: center;
+
+
+    .employee-information{
+      display: flex;
+      align-items: center;
+
+      .profile{
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        margin-right: 10px;
+        background-color: $color-gray;
+        animation:skeleton-loading 1s linear infinite alternate;
+      }
+    }
+
+    p{
+      background-color: $color-gray;
+      margin-bottom: 0.5rem;
+      border-radius: 4px;
+      animation:skeleton-loading 1s linear infinite alternate;
+    }
+
+    .name{
+      font-size: 18px;
+      height: 20px;
+      width: 200px;
+    }
+
+    .role{
+      font-size: 16px;
+      height: 15px;
+      width: 80px;
+    }
+
+    .date{
+      color:gray;
+      height: 16px;
+      width: 100px;
+    }
+
+    .group-btn{
+      display: flex;
+      flex-direction: column;
+
+      .btn{
+        padding: 0.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        height: 30px;
+        width: 90px;
+        background-color: $color-gray;
+        border: 1px solid $color-gray;
+        animation:skeleton-loading 1s linear infinite alternate;
+      }
+
+      .edit{
+        margin-bottom: 0.5rem;
+        color:#fff
+      }
+
+    }
+
+  }
+}
+
+@keyframes skeleton-loading {
+  0%{
+    background-color: hsl(201,21%,87%);
+  }
+  100%{
+    background-color: hsl(200,20%,96%);
+  }
+
+}
