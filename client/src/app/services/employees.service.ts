@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { EmployeeModel } from '../models/employee.model';
 import { Observable, catchError, map, of, retry } from 'rxjs';
 import { AuthService } from './auth.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeesService {
 
-  baseURl: string = 'http://jesusthor.pythonanywhere.com/api';
+  baseURl: string = environment.apiUrl;
   defaultImage: string = 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg';
   employeesList:EmployeeModel[] = [];
 

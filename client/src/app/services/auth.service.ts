@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of, retry } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +9,15 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
 
   public token:string = '';
+  private apiUrl = environment.apiUrl;
+  private serverUrl = environment.serverUrl;
 
   constructor(
     private http: HttpClient,
   ) { }
 
   logIn(data):Observable<any>{
-    const url = 'http://jesusthor.pythonanywhere.com/api/auth/login';
+    const url = `${this.apiUrl}/auth/login`;
     return this.http.post(url,{ data })
     .pipe(map((response:any) => {
       if (response.status){
@@ -36,8 +39,8 @@ export class AuthService {
     const token = localStorage.getItem('token');
     if (!token) return
 
-    const urlServer = 'http://localhost:5000/verify';
-    return this.http.post(urlServer, {token}).pipe(
+    const url = `${this.serverUrl}/verify`;
+    return this.http.post(url, {token}).pipe(
       map( (response:any) => {
         if (response.status) {
           this.setToken(token);
