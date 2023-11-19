@@ -1,0 +1,23 @@
+<div class="title-descrition">
+    <h3>Detalles del paquete</h3>
+    <p class="description">Cantidad de producto: 8</p>
+    <p class="description">Nombre del paquete: Paquete 1</p>
+    <p class="description">Total: 500000</p>
+</div>
+
+
+
+<h3 class="title">Productos</h3>
+
+
+<div class="product-flex" *ngFor="let product of products">
+    <div class="products-card">
+        <img src={{product.url}} alt="Zapatos rojos de tacón alto">
+    <div class="product-info">
+      <h2>{{product.name}}</h2>
+      <p>Proceso: {{product.process}}</p>
+      <p>Cantidad: {{product.amount}}</p>
+      <p>Fecha: {{product.createdAt}}</p>
+    </div>
+</div>
+</div>

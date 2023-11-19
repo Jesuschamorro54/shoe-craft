@@ -5,6 +5,9 @@ import { PaymentManagementComponent } from './components/payment-management/paym
 import { PaymentListComponent } from './components/payment-list/payment-list.component';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { ManageUserComponent } from './components/manage-user/manage-user.component';
+import { ProductsComponent  } from './components/products/products.component';
+import { ProductComponent } from './components/product/product.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -18,6 +21,8 @@ const routes: Routes = [
     ]
   },
   { path: 'employees', component: ManageUserComponent },
+  { path: 'products', component: ProductsComponent},
+  { path: 'product', component: ProductComponent},
 
 ];
 

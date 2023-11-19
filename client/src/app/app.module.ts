@@ -16,6 +16,8 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
 import { SkeletonListEmployeesComponent } from './components/skeleton/skeleton-list-employees/skeleton-list-employees.component';
 import { RemoveModalComponent } from './components/modals/create-user-modal/remove-modal/remove-modal.component';
 import { CreateEmployeeComponent } from './components/create-employee/create-employee.component';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { CreateEmployeeComponent } from './components/create-employee/create-emp
     SkeletonListEmployeesComponent,
     RemoveModalComponent,
     CreateEmployeeComponent,
+    ProductsComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
