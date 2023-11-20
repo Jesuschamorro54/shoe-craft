@@ -9,15 +9,16 @@
 
 <h3 class="title">Productos</h3>
 
-
-<div class="product-flex" *ngFor="let product of products">
-    <div class="products-card">
-        <img src={{product.url}} alt="Zapatos rojos de tacón alto">
-    <div class="product-info">
-      <h2>{{product.name}}</h2>
-      <p>Proceso: {{product.process}}</p>
-      <p>Cantidad: {{product.amount}}</p>
-      <p>Fecha: {{product.createdAt}}</p>
+<div class="product-flex">
+    <div class="product-box" *ngFor="let product of products">
+        <div class="products-card">
+            <img src={{product.url}} alt="Zapatos rojos de tacón alto">
+            <div class="product-info">
+                <h2>{{product.name}}</h2>
+                <p>Proceso: {{product.process}}</p>
+                <p>Cantidad: {{product.amount}}</p>
+                <p>Fecha: {{product.createdAt}}</p>
+            </div>
+        </div>
     </div>
-</div>
 </div>

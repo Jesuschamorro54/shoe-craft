@@ -7,6 +7,7 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
 import { ManageUserComponent } from './components/manage-user/manage-user.component';
 import { ProductsComponent  } from './components/products/products.component';
 import { ProductComponent } from './components/product/product.component';
+import { ProductRegistrationComponent } from "./components/product-registration/product-registration.component";
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'employees', component: ManageUserComponent },
   { path: 'products', component: ProductsComponent},
   { path: 'product', component: ProductComponent},
+  { path: 'add-product', component: ProductRegistrationComponent},
 
 ];
 

@@ -38,7 +38,7 @@
   <tr class="product-information" *ngFor="let product of products">
     <td class="infor-user">
       <div>
-        <img src="{{ product.url }}" alt="" />
+        <img src="https://t-static.dafiti.com.br/V72x1SeIyCE7HwdjaXNgKu9KkM0=/400x580/smart/filters:quality(90)/static.dafiti.com.co/p/nabril-0773-8425222-2-product.jpg" alt="" />
 
         <div class="name">
           <p>{{ product.name }}</p>
@@ -68,9 +68,9 @@
       <p>{{ package.name }}</p>
     </td>
 
-    <td>{{ package.amount }}</td>
-    <td>{{ package.createdAt }}</td>
-    <td>{{ package.total_amount }}</td>
+    <td>{{ package.total_products }}</td>
+    <td>{{ package.date }}</td>
+    <td>{{ package.total_cost }}</td>
     <td>{{ package.state }}</td>
   </tr>
 </table>
