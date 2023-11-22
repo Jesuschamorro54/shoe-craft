@@ -27,7 +27,7 @@
   margin: 2rem 0;
 
   h3{
-    color: #FA280A;
+    color:$color-primate-red;
     margin-bottom: 1rem;
     font-weight: 600;
     letter-spacing: 1px;
@@ -39,9 +39,9 @@
     cursor: pointer;
     width: 250px;
     border-radius: 4px;
-    background-color: #FA280A;
+    background-color: $color-primate-red;
     color: #fff;
-    border: 1px solid #FA280A;
+    border: 1px solid $color-primate-red;
     padding: 0.5rem 1rem;
     font-weight: 600;
     font-size: 18px;
@@ -51,6 +51,18 @@
 .body{
   margin-bottom: 3rem;
   padding-bottom: 2rem;
+}
+
+.delete{
+  justify-content: flex-end;
+  display: flex;
+
+  span{
+    font-size: 16px;
+    padding: 5px;
+    cursor: pointer;
+    color:$color-primate-red;
+  }
 }
 
 .grid-container {

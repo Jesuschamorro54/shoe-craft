@@ -6,11 +6,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./remove-modal.component.scss']
 })
 export class RemoveModalComponent {
-  @Output() onConfirm = new EventEmitter<boolean>();
+  @Output() onConfirm = new EventEmitter<string>();
 
   // Estas variables permiten llevar el control del modal (mostrar-ocultar)
   showModal = false;
   hiddenModal = false;
+
+  idToDelete:string;
 
   constructor(
   ) { }
@@ -19,7 +21,7 @@ export class RemoveModalComponent {
   }
 
   confirmation():void{
-    this.onConfirm.emit(true);
+    this.onConfirm.emit(this.idToDelete);
   }
 
   // Abrir el modal y pasar el ID del proyecto

@@ -14,7 +14,8 @@
         </p>
       </div>
 
-      <form (ngSubmit)="registerProducts()">
+      <form (ngSubmit)="registerProducts()" [formGroup]="registerProduct">
+
         <div class="input-item">
           <div class="icon">
             <i class="fa-solid fa-link fa-lg"></i>
@@ -33,7 +34,7 @@
           <div class="icon">
             <i class="fa-solid fa-dollar-sign fa-lg"></i>
           </div>
-          <input type="text" placeholder="Valor*" formControlName="cost">
+          <input type="text" placeholder="Valor*" formControlName="cost" (input)="onInputUser($event)">
         </div>
 
         <div class="buttons">
@@ -41,6 +42,7 @@
           <input *ngIf="!loading" class="btn" type="submit" value="Registrar">
           <span *ngIf="loading" class="loader"></span>
         </div>
+
       </form>
     </div>
   </div>

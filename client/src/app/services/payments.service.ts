@@ -45,12 +45,10 @@ export class PaymentsService {
       id: payment.id,
       employeeId: payment.employee_id,
       state: payment.state,
-      total:payment.tota,
+      total:payment.total,
       date:payment.date
     }
   }
-
-
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

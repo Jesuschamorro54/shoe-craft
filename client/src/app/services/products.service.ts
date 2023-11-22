@@ -44,7 +44,7 @@ export class ProductsService {
    * @param data debe ser de tipo
    */
   createProducts(data):Observable<any>{
-    const url = this.baseURl+'/auth/products';
+    const url = this.baseURl+'/products';
     const headers = {
       Authorization: this._authService.token
     };
@@ -64,7 +64,7 @@ export class ProductsService {
    * * @returns status y la cantidad de rows eliminadas
   */
   deleteProduct(id:string):Observable<any>{
-    const url = this.baseURl + `/products//${id}`;
+    const url = this.baseURl + `/products/${id}`;
     const headers = {
       Authorization: this._authService.token
     };

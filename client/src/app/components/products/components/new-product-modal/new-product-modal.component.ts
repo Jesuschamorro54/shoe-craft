@@ -12,6 +12,7 @@ export class NewProductModalComponent {
   @Output() closeModal = new EventEmitter<boolean>();
   loading = false;
   registerProduct: FormGroup;
+  successMessage:string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,10 +26,17 @@ export class NewProductModalComponent {
       })
     }
 
+  /**Permite solo dejar escribir numeros */
+  onInputUser(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    inputElement.value = inputElement.value.replace(/[^0-9]/g, '');
+  }
+
   registerProducts(){
     console.log("entre aca: ")
 
     if (this.registerProduct.valid) {
+      console.log("entre aca 2: ")
       this.loading = true;
 
       const product={
@@ -40,22 +48,25 @@ export class NewProductModalComponent {
       this._productsService.createProducts(product).subscribe({
         next:response =>{
           if (response.status){
-            this._employeesService.employeesList.unshift(response);
+            this._productsService.productList.unshift(response.data.data);
+
+            // Reiniciar el formulario
+            this.registerProduct.reset();
           }
         },
         error:(error) => console.log('Any was wrong'),
         complete: () => {
           this.loading = false;
-
+          this.close();
         }
       });
     }
   }
 
-  close(event: Event) {
+  close(event?: Event) {
     if (this.loading) return
     this.closeModal.emit(true);
-    event.stopPropagation();
+    if (event) event.stopPropagation();
   }
 
   preventClosing(event: Event) {
