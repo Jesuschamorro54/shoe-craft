@@ -7,7 +7,6 @@ export interface EmployeeModel{
   state: number,
   img: string,
   admissionDate: Date,
-
   address: string;
   phone: number;
   gender: string
@@ -15,8 +14,27 @@ export interface EmployeeModel{
 
 export interface PaymentsModel{
   id: number,
-  total:number,
-  state:boolean,
+  employeeId: number,
+  state:0 | 1,
+  date:Date,
+  total: number,
+}
+
+export interface ProductsModel{
+  id: number,
+  name: string,
+  cost:number,
+  state: 0 | 1,
+}
+
+export interface PackagesModel{
+  id: number,
+  employeeId: number,
+  productId: number,
+  name: string,
+  totalCost:number,
+  totalProducts:number,
+  state:0 | 1,
   date:Date
 }
 

@@ -19,15 +19,15 @@ export class EmployeeListComponent implements OnInit {
     // this._employeesService.getEmployees();
   }
 
-  openDeleteModal(){
+  openDeleteModal(employeeId){
     this.__removeModal.openModal();
-    console.log("ABRIR MODAL");
+    console.log("ABRIR MODAL", employeeId);
   }
 
   deleteEmployee(employeeId) {
     console.log("ENTRE A ELIMINAR deleteEmployee", employeeId);
     if (employeeId) {
-      console.log("ENtre validacion")
+      console.log("ENtre validacion: ")
       this._employeesService.deleteEmployee(employeeId).subscribe({
         next: (response) => {
           const index = this._employeesService.employeesList.findIndex(employee => employee.id === employeeId);

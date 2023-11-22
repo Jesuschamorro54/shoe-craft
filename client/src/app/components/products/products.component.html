@@ -1,0 +1,25 @@
+<div>
+
+  <div class="title-descrition">
+    <h3>Gestiona tus pagos</h3>
+    <p class="description">¡Bienvenido al Módulo de Productos! Aquí, como administrador, tienes el control total sobre la gestión de nuestro catálogo de zapatos. Añade, edita o elimina productos con facilidad. Obtén insights valiosos sobre el rendimiento de cada artículo y mantén tu inventario siempre actualizado. Simplificamos la administración para que puedas centrarte en optimizar tu oferta y brindar la mejor experiencia posible.</p>
+  </div>
+
+  <div class="header">
+    <h3>Mis productos</h3>
+    <button class="btn-register-products">Registrar productos <i class="fa-solid fa-plus fa-lg"></i></button>
+  </div>
+
+  <div class="body">
+    <div class="grid-container">
+      <div class="grid-item" *ngFor="let produc of listProduct">
+        <img src="" alt=""  [src]="produc.image">
+        <div class="item-desc">
+          <h4>{{produc.name}}</h4>
+          <p>Valor: ${{produc.cost.toLocaleString('es-CO')}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

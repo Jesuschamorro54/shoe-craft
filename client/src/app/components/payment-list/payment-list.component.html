@@ -10,7 +10,6 @@
     <th>Medio</th>
     <th>Estado</th>
     <th *ngIf="filterType === 'Pendiente'" >Acciones</th>
-    <th>Nota</th>
   </tr>
 
   <tr class="payment-information" *ngFor="let payment of payments">
@@ -49,9 +48,6 @@
       <span *ngIf="editing && payment.id === editing.id" (click)="cancelEdit()"><i class="fa-solid fa-xmark"></i></span>
     </td>
 
-    <td class="note">
-      {{payment.note}}
-    </td>
   </tr>
 
 </table>

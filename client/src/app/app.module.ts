@@ -18,6 +18,8 @@ import { RemoveModalComponent } from './components/modals/create-user-modal/remo
 import { CreateEmployeeComponent } from './components/create-employee/create-employee.component';
 import { AuthService } from './services/auth.service';
 import { UserMenuComponent } from './components/nav-bar/components/user-menu/user-menu.component';
+import { ProductsComponent } from './components/products/products.component';
+
 
 export const getToken = (authService: AuthService, ) => {
   return () => authService.verifyToken();
@@ -38,6 +40,7 @@ export const getToken = (authService: AuthService, ) => {
     RemoveModalComponent,
     CreateEmployeeComponent,
     UserMenuComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,

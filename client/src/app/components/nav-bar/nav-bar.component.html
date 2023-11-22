@@ -4,8 +4,9 @@
       <img src="./../../../assets/img/logo.svg" alt="Logo" class="logo">
 
       <div class="menu" *ngIf="_authService.isAuth">
-          <div class="employees"><h3 (click)="goToUrl('employees')">Mis empleados</h3></div>
-          <div class="payment-management"><h3 (click)="goToUrl('payment-management')">Mis pagos</h3></div>
+          <div class="employees" (click)="goToUrl('employees')"><h3 >Mis empleados</h3></div>
+          <div class="payment-management" (click)="goToUrl('payment-management')"><h3>Mis pagos</h3></div>
+          <div class="products" (click)="goToUrl('products')"><h3>Mis productos</h3></div>
       </div>
     </div>
 

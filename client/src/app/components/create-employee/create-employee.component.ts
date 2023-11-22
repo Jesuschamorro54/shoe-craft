@@ -70,7 +70,6 @@ export class CreateEmployeeComponent {
         complete: () => this.loading = false
       });
 
-
     }
   }
 }
