@@ -1,0 +1,123 @@
+@import '../../../../../assets/style/colors.scss';
+@import '../../../../../assets/style/loader.scss';
+@import '../../products.component.scss';
+
+main{
+  position: absolute;
+  z-index: 10001;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 170px);
+  background-color: rgba(100, 100, 100, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: none;
+
+  .container{
+    background-color: white;
+    width: 400px;
+    min-height: 300px;
+
+    header{
+      color: white;
+      background-color: $color-primate-red;
+      width: 100%;
+      display: flex;
+      padding: 1rem;
+      justify-content: space-between;
+      align-items: center;
+
+      h2{
+        font-size: 1.3rem;
+      }
+
+      span{
+        cursor: pointer;
+      }
+    }
+
+    .body{
+      margin: 1rem;
+
+      .title-descrition{
+        margin: 1rem;
+
+        h3{
+          font-size: 1.1rem;
+        }
+      }
+
+      form{
+        padding: 1rem;
+
+        .input-item{
+          width: 100%;
+          margin-bottom:1.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .icon{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background-color: $color-primate-red;
+            width: 50px;
+            height: 50px;
+            border-radius: 6px 0 0 6px;
+            // padding: .6rem;
+          }
+
+          input[type="text"]{
+            width: 100%;
+            outline: none;
+            border: 1px solid $color-primate-red;
+            height: 50px;
+            padding: 5px;
+            font-size: 1.1rem;
+
+            &:focus{
+              border: 2px solid $color-primate-red;
+            }
+          }
+
+        }
+
+        .buttons{
+          text-align: center;
+          margin-top: 1rem;
+
+          .btn{
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin: .5rem;
+            outline: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+
+            &:hover{
+              box-shadow: 4px 4px 10px $color-gray-strong;
+            }
+          }
+
+          button{
+            background-color: $color-gray-strong;
+          }
+
+          input[type="submit"]{
+            background-color: $color-primate-red;
+          }
+
+        }
+      }
+    }
+
+  }
+
+}

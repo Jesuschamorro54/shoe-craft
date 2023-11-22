@@ -7,13 +7,13 @@
 
   <div class="header">
     <h3>Mis productos</h3>
-    <button class="btn-register-products">Registrar productos <i class="fa-solid fa-plus fa-lg"></i></button>
+    <button class="btn-register-products" (click)="abrirModal()" >Registrar productos <i class="fa-solid fa-plus fa-lg"></i></button>
   </div>
 
   <div class="body">
     <div class="grid-container">
       <div class="grid-item" *ngFor="let produc of listProduct">
-        <img src="" alt=""  [src]="produc.image">
+        <img src="" alt=""  [src]="produc.image || 'https://static.vecteezy.com/system/resources/thumbnails/026/633/656/small/image-icon-symbol-design-illustration-vector.jpg'">
         <div class="item-desc">
           <h4>{{produc.name}}</h4>
           <p>Valor: ${{produc.cost.toLocaleString('es-CO')}}</p>
@@ -23,3 +23,5 @@
   </div>
 
 </div>
+
+<app-new-product-modal *ngIf="showModal" (closeModal)="cerrarModal()"></app-new-product-modal>

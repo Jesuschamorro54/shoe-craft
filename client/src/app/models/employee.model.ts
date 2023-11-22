@@ -25,6 +25,7 @@ export interface ProductsModel{
   name: string,
   cost:number,
   state: 0 | 1,
+  image: string,
 }
 
 export interface PackagesModel{

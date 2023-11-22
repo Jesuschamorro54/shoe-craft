@@ -63,13 +63,11 @@ export class CreateEmployeeComponent {
             }, 5000);
             // Reiniciar el formulario
             this.employeeForm.reset();
-
-            }
+          }
         },
         error: (error) => console.log('Any was wrong'),
         complete: () => this.loading = false
       });
-
     }
   }
 }

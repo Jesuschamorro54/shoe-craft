@@ -19,6 +19,7 @@ import { CreateEmployeeComponent } from './components/create-employee/create-emp
 import { AuthService } from './services/auth.service';
 import { UserMenuComponent } from './components/nav-bar/components/user-menu/user-menu.component';
 import { ProductsComponent } from './components/products/products.component';
+import { NewProductModalComponent } from './components/products/components/new-product-modal/new-product-modal.component';
 
 
 export const getToken = (authService: AuthService, ) => {
@@ -41,6 +42,7 @@ export const getToken = (authService: AuthService, ) => {
     CreateEmployeeComponent,
     UserMenuComponent,
     ProductsComponent,
+    NewProductModalComponent,
   ],
   imports: [
     BrowserModule,
