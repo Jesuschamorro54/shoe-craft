@@ -14,6 +14,7 @@ class Employees(db.Model):
     state = db.Column(db.Integer, default=1)
     role = db.Column(db.Enum('admin', 'cutter', 'trimmer', 'assembler' ))
     creation = db.Column(db.DateTime(), default=datetime.utcnow())
+    image = db.Column(db.String)
 
     def __init__(self, dni, name, email, password, role):
         self.dni = dni
@@ -38,6 +39,8 @@ class EmployeesSchema(ma.Schema):
     state = fields.Int()
     role = fields.Str(required=True, validate=validate.OneOf(['admin', 'cutter', 'trimmer', 'assembler']))
     creation = fields.Date()
+    image = fields.Str()
+
 
     class Meta:
         fields = ('id', 'dni', 'name', 'email', 'password', 'state', 'role', 'creation')

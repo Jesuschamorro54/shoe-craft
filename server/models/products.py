@@ -10,6 +10,7 @@ class Products(db.Model):
     name = db.Column(db.String(50))
     cost = db.Column(db.Double, default=0)
     creation = db.Column(db.DateTime(), default=datetime.utcnow())
+    image = db.Column(db.String)
 
     def __init__(self, name, cost):
         self.name = name
@@ -26,6 +27,7 @@ class ProductsSchema(ma.Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True, validate=validate.Length(min=1, max=50))
     cost = fields.Float()
+    image = fields.Str()
 
     class Meta:
         fields = ('id', 'name', 'cost')

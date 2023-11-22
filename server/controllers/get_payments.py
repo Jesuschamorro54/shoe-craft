@@ -7,6 +7,7 @@ from common.exceptions import *
 from common.CustomLoggin import Logger
 from models.payments import Payments, PaymentsSchema
 from models.pay_datails import PayDetails
+from models.employees import Employees
 from werkzeug.security import check_password_hash
 
 
@@ -25,6 +26,14 @@ fields = (
     Payments.employee_id,
     Payments.state,
     Payments.total
+)
+
+user_fields = (
+    Employees.name,
+    Employees.dni,
+    Employees.image,
+    Employees.role,
+    Employees.id
 )
 
 def main(event):
@@ -62,10 +71,12 @@ def main(event):
     for payment in payments:
 
         params = {'payment_id': payment['id']}
+        user_params = {'id': payment['employee_id']}
 
         detail = search(PayDetails, params)
+        user = search(Employees, user_params, user_fields)
 
-        payment.update({'details': detail})
+        payment.update({'details': detail, 'user': user})
 
     result['data'] = payments
 
