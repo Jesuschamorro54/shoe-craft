@@ -4,7 +4,7 @@ import pymysql
 from config.configure import db
 from common.exceptions import *
 from common.CustomLoggin import Logger
-from common.utils import SECRET_KEY
+from common.utils import insert
 from models.products import Products, ProductsSchema
 from werkzeug.security import generate_password_hash
 
@@ -47,14 +47,12 @@ def main(event):
     
     try:
         
-        product_data = Products(**data)
-        db.session.add(product_data)
-        db.session.commit()
+        result = insert(Products, data)
 
     except Exception as e:
         return PyMysqlIntegrityError(e)
 
-    result = {'status': True, 'data': product_data.to_dict()}
+    result = {'status': True, 'data': result}
 
     return {
         'statusCode': 200,

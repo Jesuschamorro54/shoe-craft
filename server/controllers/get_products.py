@@ -56,8 +56,9 @@ def main(event):
     # logger.info(result)
 
 
-    if not result['data']:
-
+    if result['data']:
+        result['status'] = True
+    else:
         result.update({
             'status': False,
             'data': [],

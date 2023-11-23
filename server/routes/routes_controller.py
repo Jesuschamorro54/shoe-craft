@@ -6,7 +6,7 @@ from common.utils import jwt_token_generate, verify_token
 logger = Logger()
 def generate_event(request: Request, claims={}) -> dict:
     event = {
-        'body': request.json if request.method == 'POST' else None,
+        'body': request.json if request.method in ['POST', 'PUT']  else None,
         'queryStringParameters': dict(request.args),
         'pathParameters': request.view_args,
         'request': {

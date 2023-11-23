@@ -1,12 +1,10 @@
 import json
-import pymysql
-from common.utils import build_filters, list_to_listdict, search, delete
 
 from config.configure import db
 from common.exceptions import *
 from common.CustomLoggin import Logger
+from common.utils import get_object, xupdate
 from models.products import Products, ProductsSchema
-from werkzeug.security import check_password_hash
 
 
 product_schema = ProductsSchema()
@@ -15,13 +13,14 @@ logger = Logger()
 
 execution_message = '''
 
-    Parameters: {0}
+    Data: {0}
 '''
 
 def main(event):
     try:
 
         params = {}
+        data = event['body']['data']
 
         # check optional pathParameters
         if 'pathParameters' in event:
@@ -34,27 +33,23 @@ def main(event):
             params.update({ k:json.loads(v) for k, v in query.items() })
 
 
-        user = event['authorizer']['jwt']
+        user = event['authorizer']['jwt']        
 
-        params['id']
+        authorized = user['role'] == 'admin'
+        if not authorized:
+            raise PermissionError()
 
         logger.info(execution_message.format(set(params)))
 
+    except PermissionError as e:
+        return UnauthorizedCreationException()
+    
     except Exception as e:
         logger.error(e)
         return InsufficientParametersException()
-
-    result = { 'status': False,  'data': [] }
     
-    result = delete(Products, params)
 
-    if not result['status']:
-        result.update({
-            'status': False,
-            'data': [],
-            'error': 'ResourceNotFoundException',
-            'errorMessage': 'The product does not exists.'
-        })
+    result = xupdate(Products, params, data)
 
     return {
         'statusCode': 200,

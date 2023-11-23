@@ -2,7 +2,7 @@ import jwt
 import inspect
 from config.configure import db
 from datetime import datetime, timedelta, timezone
-from sqlalchemy import and_, or_
+from sqlalchemy import and_, or_, update
 
 SECRET_KEY = "a6U7MEQ6rzasJz4A"
 
@@ -154,7 +154,7 @@ def list_to_listdict(fields, data: list):
         new_item = {}
         for i, value in enumerate(item):
             new_item.update({field_names[i]: value})
-            print(f"{field_names[i]}: {value}")
+            # print(f"{field_names[i]}: {value}")
 
         data_return.append(new_item)
 
@@ -205,19 +205,58 @@ def search(Table, params, fields=None):
         items = db.session.query(Table).filter(*filters).all()
 
         result = [item.to_dict() for item in items]
+
     return result
 
 
-def delete(Table, params):
-    result = {'row_affect': 0}
+def xupdate(Table, params, data):
+
+    result = {'status': False, 'row_affect': 0}
+
+    action = update(Table)
     filters = build_filters(Table, params)
+
+    statement = action.where(*filters).values(**data)
+    
+    execution = db.session.execute(statement)
+    db.session.commit()
+
+    if execution.rowcount > 0:
+        print("entree")
+        result.update({ 'status': True, 'row_affect': execution.rowcount })
+
+    return result
+
+def delete(Table, params):
+
+    result = {'status': False, 'row_affect': 0}
+    
+    filters = build_filters(Table, params)
+
     item = db.session.query(Table).filter(*filters).first()
 
     if item:
         db.session.delete(item)
         db.session.commit()
 
-        result = {'row_affect': 1}
+        if not db.session.is_modified(item):
+            result.update({ 'status': True, 'row_affect': 1 })
+
+    return result
+
+def insert(Table, data):
+
+    result = {'status': False, 'data': {} }
+
+    item = Table(**data)
+    db.session.add(item)
+    db.session.commit()
+
+    if item.id:
+        result.update({
+            'status': True,
+            'data': item.to_dict()
+        })
 
     return result
 

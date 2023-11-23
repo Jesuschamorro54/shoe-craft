@@ -55,7 +55,6 @@ def main(event):
     if not incomplete_package:
         data_post = distribute_total_products(data, product)
     else:
-        print("ENCONTRADO")
         item = incomplete_package[0]
         package = Packages.query.get(item['id']) 
         available = 12 - item['total_products']

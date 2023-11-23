@@ -59,10 +59,4 @@ export class LoginComponent {
   seePassword(){
     this.showPassword = !this.showPassword;
   }
-
-
-
-
-
-
 }

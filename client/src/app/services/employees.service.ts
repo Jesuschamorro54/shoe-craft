@@ -81,6 +81,60 @@ export class EmployeesService {
     catchError(this.handleError<any>('deleteEmployee', [])));
   }
 
+  /**Crear producto
+   * * @returns el producto que se crea data y status
+   * @param data debe ser un objeto con la propiedad name (acepta string) y la propiedad cost (acepta numero)
+   */
+  createProduct(data: { name:string, cost: number}):Observable<any>{
+    const url = this.baseURl+'/products';
+    const headers = {
+      Authorization: this._authService.token
+    };
+
+    return this.http.post(url,{ data },{headers}).pipe(
+      map( response => {
+        console.log("response create",response);
+        return response;
+      }),
+      retry(3),
+      catchError( this.handleError<any>('createProduct', []))
+    )
+  }
+
+  /**Obtener paquete
+   * * @returns Todos los paquetes
+  */
+  getAllPackages():Observable<any>{
+    const url = this.baseURl + `/packages`;
+    const headers = {
+      Authorization: this._authService.token
+    };
+
+    return this.http.get(url,{headers})
+    .pipe(map((response:any) => {
+      return response;
+    }),
+    retry(3),
+    catchError(this.handleError<any>('getAllPackages', [])));
+  }
+
+  /**Obtener paquete
+   * * @returns Todos los productos
+  */
+  getAllProducts():Observable<any>{
+    const url = this.baseURl + `/products`;
+    const headers = {
+      Authorization: this._authService.token
+    };
+
+    return this.http.get(url,{headers})
+    .pipe(map((response:any) => {
+      return response;
+    }),
+    retry(3),
+    catchError(this.handleError<any>('getAllProducts', [])));
+  }
+
   format(employee):EmployeeModel{
     return {
       id: employee.id,

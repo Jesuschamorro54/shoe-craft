@@ -1,11 +1,11 @@
 
 
-<form>
+<form [formGroup]="productForm" (ngSubmit)="save()" class="form" id="registerProduct">
   <div class="question">
 
     <div class="select-product">
       <span>Producto</span>
-      <select>
+      <select formControlName="name">
         <option value="opcion1">Opción 1</option>
         <option value="opcion2">Opción 2</option>
         <option value="opcion3">Opción 3</option>
@@ -13,23 +13,27 @@
       </select>
     </div>
 
-    <label for="">Código
-      <input type="text" name="" id="">
+    <label>Código
+      <input type="text" formControlName="" id="">
     </label>
 
-    <label for="">Cantidad
-      <input type="number" name="" id="">
+    <label>Cantidad
+      <input type="number" formControlName="cost" id="">
     </label>
 
-    <label for="">Proceso
-      <input type="text" name="" id="">
+    <label>Proceso
+      <input type="text" formControlName="" id="">
     </label>
 
   </div>
 
   <div class="group-btn">
-    <button class="btn save">Guardar</button>
+    <button class="btn save" type="submit" [disabled]="productForm.invalid" form="registerProduct">Guardar</button>
     <button class="btn cancel">Cancelar</button>
+  </div>
+
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
   </div>
 
 </form>

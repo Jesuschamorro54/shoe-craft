@@ -6,6 +6,9 @@ import { PaymentListComponent } from './components/payment-list/payment-list.com
 import { ManageUserComponent } from './components/manage-user/manage-user.component';
 import { authGuard } from './guards/auth.guard';
 import { ProductsComponent } from './components/products/products.component';
+import { ProductComponent } from './components/product/product.component';
+import { ProductRegistrationComponent } from "./components/product-registration/product-registration.component";
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -19,6 +22,10 @@ const routes: Routes = [
     ],
     canActivate: [authGuard]
   },
+  { path: 'employees', component: ManageUserComponent },
+  { path: 'products', component: ProductsComponent},
+  { path: 'product', component: ProductComponent},
+  { path: 'add-product', component: ProductRegistrationComponent},
 
   { path: 'employees', component: ManageUserComponent, canActivate: [authGuard]},
   { path: 'products', component: ProductsComponent, canActivate: [authGuard]},
