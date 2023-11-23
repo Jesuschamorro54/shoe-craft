@@ -92,6 +92,7 @@ export class AuthService {
   logOut(){
     this.token = '';
     localStorage.removeItem('token');
+    
   }
 
   get isAuth():boolean{

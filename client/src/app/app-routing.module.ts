@@ -8,6 +8,7 @@ import { authGuard } from './guards/auth.guard';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductRegistrationComponent } from "./components/product-registration/product-registration.component";
+import { PackagesComponent } from './components/packages/packages.component';
 
 
 const routes: Routes = [
@@ -22,13 +23,16 @@ const routes: Routes = [
     ],
     canActivate: [authGuard]
   },
-  { path: 'employees', component: ManageUserComponent },
+
   { path: 'products', component: ProductsComponent},
+  { path: 'packages', component: PackagesComponent},
   { path: 'product', component: ProductComponent},
   { path: 'add-product', component: ProductRegistrationComponent},
 
+  // Rutas de sara 
   { path: 'employees', component: ManageUserComponent, canActivate: [authGuard]},
   { path: 'products', component: ProductsComponent, canActivate: [authGuard]},
+
   { path: '**', redirectTo: '/login', pathMatch: 'full'  }
 ];
 

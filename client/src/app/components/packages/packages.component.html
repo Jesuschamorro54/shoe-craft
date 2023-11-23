@@ -1,0 +1,76 @@
+<div class="title-descrition">
+    <h3>Gestiona tus productos</h3>
+    <p class="description">
+      ¡Bienvenido a 'Gestiona Tus productos! Aquí podrás gestionar tus prodctos de
+      manera sencilla y eficiente. Te proporcionamos las herramientas necesarias
+      para tener un control total de tus productos.
+    </p>
+  </div>
+  
+  <div class="menu">
+    <div class="option">
+      <button
+        class="btn"
+        (click)="btbMenu('product')"
+        [ngClass]="{ 'btn-select': menu_select == 'product' }"
+      >
+        Mis productos
+      </button>
+      <button
+        class="btn"
+        (click)="btbMenu('package')"
+        [ngClass]="{ 'btn-select': menu_select == 'package' }"
+      >
+        Paquetes
+      </button>
+    </div>
+  </div>
+  
+  <table class="tb-product" cellspacing="0" *ngIf="tables === 'product'">
+    <tr class="table-header">
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Fecha</th>
+      <th>Proceso</th>
+      <th>Paquete asociado</th>
+    </tr>
+  
+    <tr class="product-information" *ngFor="let product of products">
+      <td class="infor-user">
+        <div>
+          <img src="https://t-static.dafiti.com.br/V72x1SeIyCE7HwdjaXNgKu9KkM0=/400x580/smart/filters:quality(90)/static.dafiti.com.co/p/nabril-0773-8425222-2-product.jpg" alt="" />
+  
+          <div class="name">
+            <p>{{ product.name }}</p>
+            <p>({{ product.id }})</p>
+          </div>
+        </div>
+      </td>
+  
+      <td>{{ product.amount }}</td>
+      <td>{{ product.createdAt }}</td>
+      <td>{{ product.process }}</td>
+      <td>{{ product.associated_packages }}</td>
+    </tr>
+  </table>
+  
+  <table class="tb-product" cellspacing="0" *ngIf="tables === 'package'">
+    <tr class="table-header">
+      <th>Paquete</th>
+      <th>Total de productos</th>
+      <th>Fecha</th>
+      <th>Costo total</th>
+      <th>Estado</th>
+    </tr>
+  
+    <tr class="product-information" *ngFor="let package of packages">
+      <td>
+        <p>{{ package.name }}</p>
+      </td>
+  
+      <td>{{ package.total_products }}</td>
+      <td>{{ package.date }}</td>
+      <td>{{ package.total_cost }}</td>
+      <td>{{ package.state }}</td>
+    </tr>
+  </table>

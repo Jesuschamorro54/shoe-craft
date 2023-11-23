@@ -29,7 +29,7 @@ export class UserMenuComponent {
   }
 
   longOut(){
-    localStorage.removeItem("token");
+    this._authService.logOut();
     this._router.navigate(['/login']);
   }
 
