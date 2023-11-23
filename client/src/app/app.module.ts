@@ -23,7 +23,7 @@ import { NewProductModalComponent } from './components/products/components/new-p
 
 
 export const getToken = (authService: AuthService, ) => {
-  return () => authService.verifyToken();
+  return () => authService.getUserAuthenticated().subscribe();
 }
 
 @NgModule({
