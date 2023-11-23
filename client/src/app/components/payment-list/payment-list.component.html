@@ -6,40 +6,26 @@
     <th>Identificación</th>
     <th>Fecha</th>
     <th>Valor $</th>
-    <th>Fecha de pago</th>
-    <th>Medio</th>
     <th>Estado</th>
     <th *ngIf="filterType === 'Pendiente'" >Acciones</th>
   </tr>
 
   <tr class="payment-information" *ngFor="let payment of payments">
-
     <td class="infor-user">
       <div>
-        <img src="https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png" alt="">
+        <img [src]="payment.user.image" alt="" >
 
         <div class="name">
-          <p>{{payment.name}}</p>
-          <p>({{payment.role}})</p>
+          <p>{{payment.user.name}}</p>
+          <p>({{payment.user.role}})</p>
         </div>
       </div>
     </td>
 
-    <td>{{payment.documentNumber}}</td>
-    <td>{{payment.createdAt}}</td>
-    <!-- <td>{{payment.value}}</td> -->
-    <td>
-      <p *ngIf="!editing || editing.id !== payment.id">{{payment.value}}</p>
-      <input
-        *ngIf="editing && editing.id === payment.id"
-        class="input-value" type="text"
-        [disabled]="editing.id !== payment.id"
-        [(ngModel)]="editing.value"
-      >
-    </td>
-    <td>{{payment.paymentAt}}</td>
-    <td>{{payment.paymentMethod}}</td>
-    <td>{{payment.status}}</td>
+    <td>{{payment.user.dni}}</td>
+    <td>{{payment.date}}</td>
+    <td>{{payment.total}}</td>
+    <td>{{payment.state}}</td>
 
     <td *ngIf="filterType === 'Pendiente'" class="action">
       <span *ngIf="!editing" (click)="edit(payment.id)"><i class="fa-solid fa-pen"></i></span>
@@ -49,6 +35,5 @@
     </td>
 
   </tr>
-
 </table>
 

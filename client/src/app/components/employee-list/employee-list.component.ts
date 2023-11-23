@@ -21,6 +21,7 @@ export class EmployeeListComponent implements OnInit {
 
   openDeleteModal(employeeId){
     this.__removeModal.openModal();
+    this.__removeModal.idToDelete = employeeId;
     console.log("ABRIR MODAL", employeeId);
   }
 

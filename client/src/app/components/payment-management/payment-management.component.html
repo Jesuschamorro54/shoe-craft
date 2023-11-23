@@ -10,17 +10,9 @@
       <button class="btn" (click)="btbMenu('pending-payments')" [ngClass]="{ 'btn-select': menuIdentifier == 'pending-payments' }">Pagos pendientes</button>
       <button class="btn" (click)="btbMenu('exit-payments')" [ngClass]="{ 'btn-select': menuIdentifier == 'exit-payments' }">Pagos Exitosos</button>
     </div>
-
-    <form>
-      <input type="text" name="search" placeholder="Buscar empleado...">
-      <button type="submit" class="btn-search">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
-    </form>
   </div>
 
   <router-outlet></router-outlet>
-
 </main>
 
 

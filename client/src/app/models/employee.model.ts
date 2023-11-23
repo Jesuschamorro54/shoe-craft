@@ -15,9 +15,28 @@ export interface EmployeeModel{
 export interface PaymentsModel{
   id: number,
   employeeId: number,
-  state:0 | 1,
-  date:Date,
   total: number,
+  state:string,
+  date:Date,
+  details:Details[],
+  user:UserPyments
+}
+
+export interface Details{
+  id: number,
+  packageId:string,
+  paymentId:string,
+  value: number,
+  state:string,
+  date:Date,
+}
+
+export interface UserPyments{
+  name: string,
+  id: number,
+  dni: number,
+  image: string,
+  role: string,
 }
 
 export interface ProductsModel{
@@ -27,6 +46,7 @@ export interface ProductsModel{
   state: 0 | 1,
   image: string,
 }
+
 
 export interface PackagesModel{
   id: number,

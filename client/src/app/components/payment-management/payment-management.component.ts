@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PaymentsService } from 'src/app/services/payments.service';
 
 @Component({
   selector: 'app-payment-management',
@@ -14,6 +15,7 @@ export class PaymentManagementComponent {
   constructor(
     public _router:Router,
     public _route:ActivatedRoute,
+    public _paymentsService: PaymentsService
   ){
   }
 
@@ -24,18 +26,22 @@ export class PaymentManagementComponent {
       this.menuIdentifier = path;
     }
     else{
-      console.log("entre re");
       const url = this._router.url;
       this._router.navigate([url.split("?")[0]+'/records']);
     }
+
+    this.getPayments();
   }
 
   btbMenu(path:string) {
-    console.log("path", path);
     const pathRedirect = path.split("?")[0];
     const url = this._router.url.replace(this.menuIdentifier, pathRedirect)
     this.menuIdentifier = pathRedirect;
     this._router.navigate([url.split("?")[0]])
+  }
+
+  getPayments(){
+    this._paymentsService.getPayments().subscribe(()=>{})
   }
 
 }

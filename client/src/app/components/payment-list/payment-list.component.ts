@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PaymentsService } from 'src/app/services/payments.service';
 
 @Component({
   selector: 'app-payment-list',
@@ -7,59 +8,18 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./payment-list.component.scss']
 })
 export class PaymentListComponent implements OnInit {
-  paymentList=[
-    {
-      id:'1',
-      name: 'Sara Acuña Benavides',
-      role: 'Cortador',
-      documentNumber: '1052964434',
-      createdAt: '21/07/2023',
-      value: '5000000',
-      paymentAt: '21/07/2023',
-      paymentMethod: 'Bancolombia',
-      status: 'Pendiente',
-      state: 1,
-      note: 'EL pago se realizo con firma etxc'
-    },
-    {
-      id:'2',
-      name: 'Sara Acuña Benavides',
-      role: 'Cortador',
-      documentNumber: '1052964434',
-      createdAt: '21/07/2023',
-      value: '5000000',
-      paymentAt: '21/07/2023',
-      paymentMethod: 'Bancolombia',
-      status: 'Pendiente',
-      state: 1,
-      note: 'EL pago se realizo con firma etxc'
-    },
-    {
-      id:'3',
-      name: 'Sara Acuña Benavides',
-      role: 'Cortador',
-      documentNumber: '1052964434',
-      createdAt: '21/07/2023',
-      value: '5000000',
-      paymentAt: '21/07/2023',
-      paymentMethod: 'Bancolombia',
-      status: 'Exitoso',
-      state: 1,
-      note: 'EL pago se realizo con firma etxc'
-    },
-  ];
 
   paymentsCopy;
   filterType: string = '';
   editing;
 
   constructor(
-    private _activeRoute: ActivatedRoute,
     private _router: Router,
+    public _paymentsService: PaymentsService
   ){}
 
   ngOnInit(): void {
-    this.paymentsCopy = {...this.paymentList};
+    this.paymentsCopy = {...this._paymentsService.paymentsList};
     this.setMenuIdentifier();
   }
 
@@ -80,7 +40,7 @@ export class PaymentListComponent implements OnInit {
   }
 
   edit(id:string):void{
-    this.editing = this.paymentList.find( payment => payment.id === id );
+    this.editing = this._paymentsService.paymentsList.find( payment => payment.id === id );
   }
 
   cancelEdit(){
@@ -88,14 +48,14 @@ export class PaymentListComponent implements OnInit {
   }
 
   save(){
-    const index = this.paymentList.findIndex( payment => payment.id === this.editing.id );
-    this.paymentList[index] = { ...this.editing }
+    const index = this._paymentsService.paymentsList.findIndex( payment => payment.id === this.editing.id );
+    this._paymentsService.paymentsList[index] = { ...this.editing }
     this.editing = null;
   }
 
   get payments(){
-    if (!this.filterType) return this.paymentList;
-    return this.paymentList.filter( payment => payment.status === this.filterType );
+    if (!this.filterType) return this._paymentsService.paymentsList;
+    return this._paymentsService.paymentsList.filter( payment => payment.state === this.filterType );
   }
 
 }

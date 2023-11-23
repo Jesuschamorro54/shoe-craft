@@ -12,7 +12,7 @@
 
     <div class="group-btn">
       <!-- <button class="btn edit">Editar <i class="fa-solid fa-pen"></i></button> -->
-      <button class="btn delete" (click)="openDeleteModal(employees.id)">Eliminar <i class="fa-solid fa-trash"></i></button>
+      <button class="btn delete" (click)="openDeleteModal(employee.id)">Eliminar <i class="fa-solid fa-trash"></i></button>
     </div>
   </li>
 </ul>
@@ -29,4 +29,4 @@
 
 <app-skeleton-list-employees *ngIf="_employeesService.employeesList.length==0"></app-skeleton-list-employees>
 
-<app-remove-modal #removeModal (onConfirm)="$event ? deleteEmployee(employees.id) : null"></app-remove-modal>
+<app-remove-modal #removeModal (onConfirm)="deleteEmployee($event)"></app-remove-modal>

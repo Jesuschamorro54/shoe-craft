@@ -12,19 +12,26 @@ import { PaymentsModel } from '../models/employee.model';
 export class PaymentsService {
   paymentsList=[]
 
-
   baseURl: string = environment.apiUrl;
+
+  stateEnums = {
+    "1": 'Exitoso',
+    "-1": 'Eliminado',
+    "0": 'Pendiente'
+  }
 
   constructor(
     private http: HttpClient,
     private _authService: AuthService,
-  ) { }
+  ) {}
 
 
   getPayments():Observable<PaymentsModel[]>{
     const headers = {
       Authorization: this._authService.token
     }
+
+    this.paymentsList = [];
     const url= this.baseURl + "/payments"
     return this.http.get(url,{headers}).pipe(
       map( response => {
@@ -41,12 +48,36 @@ export class PaymentsService {
   }
 
   formatPayments(payment):PaymentsModel{
+
+    const defaultImage = 'https://i.pinimg.com/originals/a8/57/00/a85700f3c614f6313750b9d8196c08f5.png';
+
+    const details = [];
+
+    payment.details.forEach((detail:any)=>{
+      details.push({
+        id: detail.id,
+        packageId: detail.package_id,
+        paymentId:detail.payment_id,
+        value: detail.value,
+        state: detail.state,
+        date: detail.date
+      })
+    })
+
     return {
       id: payment.id,
       employeeId: payment.employee_id,
-      state: payment.state,
+      state: this.stateEnums[payment.state] || 'No Detallado',
       total:payment.total,
-      date:payment.date
+      date:payment.date,
+      details,
+      user:{
+        id:payment.user[0].id,
+        name:payment.user[0].name,
+        image:payment.user[0].image || defaultImage,
+        role:payment.user[0].role,
+        dni:payment.user[0].dni,
+      }
     }
   }
 
@@ -64,13 +95,6 @@ export class PaymentsService {
       return of(result as T);
     };
   }
-
-
-
-
-
-
-
 
 
 

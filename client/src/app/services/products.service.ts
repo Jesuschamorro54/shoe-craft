@@ -24,6 +24,9 @@ export class ProductsService {
     const headers = {
       Authorization: this._authService.token
     }
+
+    this.productList = [];
+
     const url= this.baseURl + "/products"
     return this.http.get(url,{headers}).pipe(
       map( response => {

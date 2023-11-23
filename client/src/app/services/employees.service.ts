@@ -25,6 +25,9 @@ export class EmployeesService {
     const headers = {
       Authorization: this._authService.token
     }
+
+    this.employeesList = [];
+
     const url= this.baseURl + "/employees"
     return this.http.get(url,{headers}).pipe(
       map( response => {
