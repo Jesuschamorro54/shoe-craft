@@ -1,0 +1,22 @@
+<div class="modal__container" *ngIf="showModal" id="modal-remove" [ngClass]="{'open': showModal, 'out': hiddenModal}">
+  <div class="modal-background">
+    <div class="modal_container_remove">
+
+      <div class="modal__header">
+        <p>¿Está seguro que desea eliminar este elemento?</p>
+      </div>
+
+      <div class="modal__body">
+        <p class="description">Este elemento será eliminado permanentemente y no podrá recuperarlo.</p>
+      </div>
+
+      <div class="modal__footer">
+        <button class="button btn-cancel" (click)="cancel()">Cancelar</button>
+
+        <button class="button btn-accept" (click)="confirmation()" >Aceptar
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>

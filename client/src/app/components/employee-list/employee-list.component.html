@@ -1,0 +1,32 @@
+<ul class="employees" *ngIf="_employeesService.employeesList.length>0">
+  <li *ngFor="let employee of employees">
+
+    <div class="employee-information">
+      <img [src]="employee.img" alt="" class="profile">
+      <div>
+          <p class="name">{{employee.name}}</p>
+          <p class="role">({{employee.role}})</p>
+          <p class="date">Laborando desde: {{employee.admissionDate}}</p>
+      </div>
+    </div>
+
+    <div class="group-btn">
+      <!-- <button class="btn edit">Editar <i class="fa-solid fa-pen"></i></button> -->
+      <button class="btn delete" (click)="openDeleteModal(employee.id)">Eliminar <i class="fa-solid fa-trash"></i></button>
+    </div>
+  </li>
+</ul>
+
+<div *ngIf="_employeesService.employeesList.length===0" class="warning">
+  <div class="description">
+    <h3>No tienes ningún empleado asociado aún</h3>
+    <span>Actualmente, no tienes ningún empleado asociado en tu sistema. </span> <br>
+    <span>Te invitamos a crear un nuevo empleado para comenzar a gestionar tu equipo</span>
+  </div>
+
+  <img src="https://img.freepik.com/vector-premium/presentacion-negocios-negociacion-proyecto-empleados-dibujos-animados-sentados-mesa-hablando-mujeres-discuten-cooperacion-lluvia-ideas-o-comunicacion-socios-reunion-vectorial_176516-3411.jpg?w=360" alt="empleado">
+</div>
+
+<app-skeleton-list-employees *ngIf="_employeesService.employeesList.length==0"></app-skeleton-list-employees>
+
+<app-remove-modal #removeModal (onConfirm)="deleteEmployee($event)"></app-remove-modal>

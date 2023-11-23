@@ -1,0 +1,62 @@
+@import './../../../assets/style/colors.scss';
+nav{
+  background-color: white;
+  border-bottom: 1px solid $color-primate-red;
+  box-shadow: 0px 4px 4px $color-gray; /* Bottom shadow effect */
+  margin-bottom: 1rem;
+  padding: 1rem 2rem;
+
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+
+  .main-nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo{
+      width: 100px;
+    }
+
+    .container-main{
+      display: flex;
+    }
+    .menu{
+      display: flex;
+
+      h3{
+        color:$color-primate-red;
+        cursor: pointer;
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-size: 18px;
+      }
+
+      .employees, .payment-management, .products{
+        border-radius: 4px;
+        padding: 1.5rem 1rem;;
+
+        &:hover{
+          // background-color: #dee1e7;
+          opacity: 0.8;
+        }
+      }
+    }
+
+    .user{
+      img{
+        border-radius: 50px;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+      }
+    }
+
+  }
+
+
+
+
+}
+

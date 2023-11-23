@@ -1,0 +1,18 @@
+@import url('./../assets/style/colors.scss');
+
+*:root{
+  background-color: #f8f8f8;
+}
+
+:host{
+  position: relative;
+  background-color: #f8f8f8;
+}
+
+.toolbar, .content{
+  border-left: 10px solid red;
+}
+.main-container{
+  margin: 0 5rem;
+  min-height: calc(100vh - 258px);
+}

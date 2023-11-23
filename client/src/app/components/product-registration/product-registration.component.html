@@ -1,0 +1,41 @@
+
+
+<form [formGroup]="productForm" (ngSubmit)="save()" class="form" id="registerProduct">
+  <div class="question">
+
+    <div class="select-product">
+      <span>Producto</span>
+      <select formControlName="name">
+        <option value="opcion1">Opción 1</option>
+        <option value="opcion2">Opción 2</option>
+        <option value="opcion3">Opción 3</option>
+        <option value="opcion4">Opción 4</option>
+      </select>
+    </div>
+
+    <label>Código
+      <input type="text" formControlName="" id="">
+    </label>
+
+    <label>Cantidad
+      <input type="number" formControlName="cost" id="">
+    </label>
+
+    <label>Proceso
+      <input type="text" formControlName="" id="">
+    </label>
+
+  </div>
+
+  <div class="group-btn">
+    <button class="btn save" type="submit" [disabled]="productForm.invalid" form="registerProduct">Guardar</button>
+    <button class="btn cancel">Cancelar</button>
+  </div>
+
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+
+</form>
+
+

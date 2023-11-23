@@ -1,0 +1,49 @@
+<main (click)="close($event)">
+  <div class="container" (click)="preventClosing($event)">
+    <header>
+      <h2>Registrar Producto</h2>
+      <span (click)="close($event)" >
+        <i class="fa-solid fa-xmark fa-xl"></i>
+      </span>
+    </header>
+    <div class="body">
+      <div class="title-descrition">
+        <h3>Agregar descripcion</h3>
+        <p class="description">
+          Aca puedes agregar una descripcion dando valor y a la creacion de un nuevo  (opcional).
+        </p>
+      </div>
+
+      <form (ngSubmit)="registerProducts()" [formGroup]="registerProduct">
+
+        <div class="input-item">
+          <div class="icon">
+            <i class="fa-solid fa-link fa-lg"></i>
+          </div>
+          <input type="text" placeholder="Url de imagen*" formControlName="image">
+        </div>
+
+        <div class="input-item">
+          <div class="icon">
+            <i class="fa-solid fa-shoe-prints fa-lg"></i>
+          </div>
+          <input type="text" placeholder="Nombre*" formControlName="name">
+        </div>
+
+        <div class="input-item">
+          <div class="icon">
+            <i class="fa-solid fa-dollar-sign fa-lg"></i>
+          </div>
+          <input type="text" placeholder="Valor*" formControlName="cost" (input)="onInputUser($event)">
+        </div>
+
+        <div class="buttons">
+          <button *ngIf="!loading" class="btn" (click)="close($event)">Cancelar</button>
+          <input *ngIf="!loading" class="btn" type="submit" value="Registrar">
+          <span *ngIf="loading" class="loader"></span>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</main>

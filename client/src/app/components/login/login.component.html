@@ -1,0 +1,40 @@
+<div class="login">
+
+  <div class="decorator"></div>
+
+  <div class="infor-login">
+
+    <div class="title-form">
+        <img src="./../../../assets/img/logo.svg" alt="Shoe Logix" class="logo">
+        <h3>Inicia sesión</h3>
+    </div>
+
+    <form class="login-form" [formGroup]="userLogin">
+      <label for="user">Identificación
+        <div class="desig">
+          <input type="text" id="numeroInput" placeholder="Ingrese los números de su Identificación" pattern="[0-9]*" (input)="onInputUser($event)" formControlName="dni">
+          <i class="fa-solid fa-user"></i>
+        </div>
+      </label>
+
+      <label for="password">Contraseña
+        <div class="desig">
+          <input [type]="showPassword ? 'text' : 'password'" name="password" placeholder="Ingrese su contraseña" formControlName="password">
+          <span (click)="seePassword()"><i class="fa-solid fa-eye"></i></span>
+        </div>
+      </label>
+
+      <a class="forget-password">¿Olvidaste tu contraseña?</a>
+
+      <button class="login-button" type="submit" form="userLogin" (click)="logIn()" [disabled]="loading" *ngIf="!loading">
+        <span>Iniciar sesión</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+      <span class="loader" *ngIf="loading"></span>
+
+      <span class="warning">Recuerda que los datos deben estar activos por la empresa</span>
+
+    </form>
+  </div>
+</div>

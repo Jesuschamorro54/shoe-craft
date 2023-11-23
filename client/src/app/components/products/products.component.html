@@ -1,0 +1,34 @@
+<div>
+  <div class="title-descrition">
+    <h3>Gestiona tus pagos</h3>
+    <p class="description">¡Bienvenido al Módulo de Productos! Aquí, como administrador, tienes el control total sobre la gestión de nuestro catálogo de zapatos. Añade, edita o elimina productos con facilidad. Obtén insights valiosos sobre el rendimiento de cada artículo y mantén tu inventario siempre actualizado. Simplificamos la administración para que puedas centrarte en optimizar tu oferta y brindar la mejor experiencia posible.</p>
+  </div>
+
+  <div class="header">
+    <h3>Mis productos</h3>
+    <button class="btn-register-products" (click)="abrirModal()" >Registrar productos <i class="fa-solid fa-plus fa-lg"></i></button>
+  </div>
+
+  <div class="body">
+    <div class="grid-container">
+
+      <div class="grid-item" *ngFor="let product of _productsService.productList">
+
+        <div class="delete">
+          <span (click)="openDeleteModal(product.id)"><i class="fa-solid fa-trash"></i>
+          </span >
+        </div>
+
+        <img src="" alt=""  [src]="product.image || 'https://static.vecteezy.com/system/resources/thumbnails/026/633/656/small/image-icon-symbol-design-illustration-vector.jpg'">
+        <div class="item-desc">
+          <h4>{{product.name}}</h4>
+          <p>Valor: ${{product.cost.toLocaleString('es-CO')}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-new-product-modal *ngIf="showModal" (closeModal)="cerrarModal()"></app-new-product-modal>
+
+<app-remove-modal #removeModal (onConfirm)="deleteProduct($event)"></app-remove-modal>

@@ -1,0 +1,39 @@
+
+<table class="tb-payments" cellspacing="0">
+
+  <tr class="table-header">
+    <th>Nombre</th>
+    <th>Identificación</th>
+    <th>Fecha</th>
+    <th>Valor $</th>
+    <th>Estado</th>
+    <th *ngIf="filterType === 'Pendiente'" >Acciones</th>
+  </tr>
+
+  <tr class="payment-information" *ngFor="let payment of payments">
+    <td class="infor-user">
+      <div>
+        <img [src]="payment.user.image" alt="" >
+
+        <div class="name">
+          <p>{{payment.user.name}}</p>
+          <p>({{payment.user.role}})</p>
+        </div>
+      </div>
+    </td>
+
+    <td>{{payment.user.dni}}</td>
+    <td>{{payment.date}}</td>
+    <td>{{payment.total}}</td>
+    <td>{{payment.state}}</td>
+
+    <td *ngIf="filterType === 'Pendiente'" class="action">
+      <span *ngIf="!editing" (click)="edit(payment.id)"><i class="fa-solid fa-pen"></i></span>
+      <span *ngIf="!editing"><i class="fa-solid fa-trash"></i></span>
+      <span *ngIf="editing && payment.id === editing.id" (click)="save()"><i class="fa-solid fa-floppy-disk"></i></span>
+      <span *ngIf="editing && payment.id === editing.id" (click)="cancelEdit()"><i class="fa-solid fa-xmark"></i></span>
+    </td>
+
+  </tr>
+</table>
+
