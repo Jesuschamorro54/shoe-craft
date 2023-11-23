@@ -12,9 +12,10 @@ class Products(db.Model):
     creation = db.Column(db.DateTime(), default=datetime.utcnow())
     image = db.Column(db.String)
 
-    def __init__(self, name, cost):
+    def __init__(self, name, cost, image=""):
         self.name = name
         self.cost = cost
+        self.image = image
 
     def to_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
@@ -30,4 +31,4 @@ class ProductsSchema(ma.Schema):
     image = fields.Str()
 
     class Meta:
-        fields = ('id', 'name', 'cost')
+        fields = ('id', 'name', 'cost', 'image')

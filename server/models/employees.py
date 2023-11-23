@@ -39,8 +39,8 @@ class EmployeesSchema(ma.Schema):
     state = fields.Int()
     role = fields.Str(required=True, validate=validate.OneOf(['admin', 'cutter', 'trimmer', 'assembler']))
     creation = fields.Date()
-    image = fields.Str()
+    image = fields.Str(validate=validate.Length(min=0))
 
 
     class Meta:
-        fields = ('id', 'dni', 'name', 'email', 'password', 'state', 'role', 'creation')
+        fields = ('id', 'dni', 'name', 'email', 'password', 'state', 'role', 'creation', 'image')
