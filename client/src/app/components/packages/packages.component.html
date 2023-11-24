@@ -6,7 +6,9 @@
       para tener un control total de tus productos.
     </p>
   </div>
-  
+
+  <button class="register-employee" (click)="goToUrl('add-product')" >Registrar paquete</button>
+
   <div class="menu">
     <div class="option">
       <button
@@ -35,7 +37,7 @@
       <th>Paquete asociado</th>
     </tr>
   
-    <tr class="product-information" *ngFor="let product of products">
+    <tr class="product-information" *ngFor="let product of packages">
       <td class="infor-user">
         <div>
           <img src="https://t-static.dafiti.com.br/V72x1SeIyCE7HwdjaXNgKu9KkM0=/400x580/smart/filters:quality(90)/static.dafiti.com.co/p/nabril-0773-8425222-2-product.jpg" alt="" />
@@ -47,10 +49,10 @@
         </div>
       </td>
   
-      <td>{{ product.amount }}</td>
-      <td>{{ product.createdAt }}</td>
-      <td>{{ product.process }}</td>
-      <td>{{ product.associated_packages }}</td>
+      <td>{{ product.total_products }}</td>
+      <td>{{ product.date }}</td>
+      <td>{{ product.employee_id }}</td>
+      <td>{{ product.id }}</td>
     </tr>
   </table>
   

@@ -5,24 +5,24 @@
 
     <div class="select-product">
       <span>Producto</span>
-      <select formControlName="name">
-        <option value="opcion1">Opción 1</option>
-        <option value="opcion2">Opción 2</option>
-        <option value="opcion3">Opción 3</option>
-        <option value="opcion4">Opción 4</option>
+      <select formControlName="product_id">
+        <option *ngFor="let product of _productsService.productList" value="{{product.id}}">{{product.name}}</option>
+        <!-- <option value="2">Opción 2</option>
+        <option value="3">Opción 3</option>
+        <option value="4">Opción 4</option> -->
       </select>
     </div>
 
     <label>Código
-      <input type="text" formControlName="" id="">
+      <input type="text" formControlName="name" id="">
     </label>
 
     <label>Cantidad
-      <input type="number" formControlName="cost" id="">
+      <input type="number" formControlName="total_products" id="">
     </label>
 
-    <label>Proceso
-      <input type="text" formControlName="" id="">
+    <label>Empleado ID
+      <input type="text" formControlName="employee_id" id="">
     </label>
 
   </div>

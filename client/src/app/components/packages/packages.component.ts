@@ -29,6 +29,10 @@ export class PackagesComponent {
     });
   }
 
+  goToUrl(url){
+    this._router.navigate([url])
+  }
+
   btbMenu(value) {
     if(value == "package"){
       this.tables = "package";

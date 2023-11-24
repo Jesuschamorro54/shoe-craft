@@ -85,8 +85,8 @@ export class EmployeesService {
    * * @returns el producto que se crea data y status
    * @param data debe ser un objeto con la propiedad name (acepta string) y la propiedad cost (acepta numero)
    */
-  createProduct(data: { name:string, cost: number}):Observable<any>{
-    const url = this.baseURl+'/products';
+  createProduct(data: { product_id: number,  name:string, total_products: number, employee_id: number }):Observable<any>{
+    const url = this.baseURl+'/packages';
     const headers = {
       Authorization: this._authService.token
     };
