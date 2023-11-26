@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of, retry } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import * as jwtDecode from 'jwt-decode';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -54,6 +55,38 @@ export class AuthService {
       catchError(this.handleError<any>('verify', []))
     )
 
+  }
+
+  public getUserAuthenticated(): Observable<Boolean> {
+    return new Observable<any>(observer => {
+      try {
+
+        // Extraer el token del local storage
+        let token: string = localStorage.getItem('token');
+
+        // Decostruir el token
+        let tokenDecoded = jwtDecode.jwtDecode(token);
+
+        // Validar si el token es verdadero
+        if (this.isTokenValid(tokenDecoded)){
+          this.setToken(token);
+          observer.next(true);
+        } else {
+          console.log("UserNotAuthenticated")
+          observer.next(false)
+        }
+        
+      } catch (error) {
+        console.log(error)
+        console.log("UserNotAuthenticated")
+        observer.next(false)
+      }
+
+    });
+  }
+
+  isTokenValid(decodedToken: any): boolean {
+    return decodedToken && decodedToken.exp && Date.now() / 1000 < decodedToken.exp;
   }
 
   logOut(){
